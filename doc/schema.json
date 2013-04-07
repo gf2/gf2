@@ -1,4 +1,4 @@
-Here we describe data schema. The schema will be used in restful api.
+// Here we describe data schema. The schema will be used in restful api.
 
 // Section object
 {
@@ -8,7 +8,7 @@ Here we describe data schema. The schema will be used in restful api.
 // Reading section object
 {
   // Title of the passage.
-  "title: "Seventeenth-Century European Economic Growth",
+  "title": "Seventeenth-Century European Economic Growth",
 
   // optional image shown with the passage. See reading in TPO9-1 
   "image": "/static/img/xxx.jpg",
@@ -32,81 +32,154 @@ Here we describe data schema. The schema will be used in restful api.
   ], 
 
   "questions": [
-    questionObject1,
-    questionObject2
+    readingQuestionObject1,
+    readingQuestionObject2
   ]
 }
 
-// Reading/Listening Question object
-    {
-      // "multichoice", "insert", 
-      // "classify", Last question of reading. Or some questions in listening.
-      // "ordering", See TPO4-Listening section 2, question 6
-      "type": "multichoice",
+// Reading Question object -- multichoice
+{
+  // "multichoice"
+  "type": "multichoice",
 
-      // Index of the corrsponding paragraph. At which position the passage would be displayed.
-      // Leave empty for classify question, as passage is not shown in the last question.
-      // Empty for all listening questions.
-      "paragraph": 0,
+  // Index of the corrsponding paragraph. At which position the passage would be displayed.
+  "paragraph": 0,
 
-      // How many points does this question worth.
-      // Usually 1 for "multichoice", "insert"
-      //         2 for the last "classify" question in reading.
-      "points": 2,
+  // How many points does this question worth.
+  "points": 1,
 
-      // For multichoice/classify, this is the description.
-      // For insert, this will be the sentence to be inserted. 
-      "description": "Why does the author mention <b>comedy</b>",
+  "description": "Why does the author mention <b>comedy</b>",
 
-      // Usually four options, six options for last question.
-      "options": [
-        "More oil is extracted from the sea than from land",
-        "..."
-      ],
+  // Usually four options.
+  "options": [
+    "More oil is extracted from the sea than from land",
+    "..."
+  ],
+  
+  "answer" : 0, 
+}
 
-      // Num of answer choises.
-      // Usually be 1, for multichoice questions.
-      // Could be >1, for multi-answer multichoice questions.
-      // Usually be 3, for drag questions.
-      "choice_number": 1,
+// Reading Question object -- insert
+{
+  "type": "insert",
 
-      // Array of correct answers for "multichoice", "insert", "drag" questions.
-      // Array of answers in correct order for "ordering" questions.
-      "answers": [
-        0, 2
-      ],
-      // In "classify" questions, this an array of array, where the sub-array corresponds to the list of correct answers for that class.
-      "answers": [
-        [0, 2],
-        [1, 3]
-      ],
-      // For ordering question, sometimes there is a predefined fixed answer on top.
-      // Only see one case so far, TPO4-Listening section 2, question 6
-      "fixed_answers": [
-        "The government provided no official support for the arts."
-      ]
+  "paragraph": 0,
 
-      // See TPO2 Listening Section 1, question 2
-      // Sometimes three classes.
-      "classes": [
-        "Include in report",
-        "Not include in report"
-      ],
+  "points": 1,
 
-      // The audio asking the questions
-      "audio": [
-        // Globally unique audio id.
-        "t1-lis-sec2-q5"
-      ],
+  // The sentence to be inserted. 
+  "description": "The factories did not have to go to the streams when power could come to the factories",
 
-      // Replay audio from part of the listening audio.
-      "replay_audio": [
-        // Globally unique audio id.
-        "t1-lis-sec2-q5-rep"
-      ]
+  "answer": 3,
+}
 
-    }
+
+// Reading Question object -- summary
+{
+  "type": "summary",
+
+  "points": 2,
+
+  // One of the four ideas given in the classify/summary question. 
+  "description": "An expedition to the Mediterranean answered some long-standing questions about the ocean’s history.",
+
+  "options": [
+     "idea1",
+     "idea2",
+     "...",
+     "idea6"
+  ],
+
+  "answers": [0, 2, 4],
+}
 
 
 // Listening section object
+{
 
+  // background image for the listening.
+  "image": "/static/img/xxx.jpg",
+
+  // Globally unique audio id. Playing url can be constructed from this directly.
+  "audio": "t1-lis-sec2-main"
+
+  "questions": [
+    listeningQuestionObject1,
+    listeningQuestionObject2
+  ]
+}
+
+// Listening Question object -- multichoice
+{
+  "type": "multichoice",
+
+  "points": 1,
+
+  "description": "What does the teacher mean when she says this.",
+
+  "options": [
+    "She means aaa",
+    "..."
+  ],
+
+  // Array of correct answers.
+  "answers": [0, 2],
+
+  // The audio asking the questions, 
+  "audio": "t1-lis-sec2-q5",
+
+  // Replay audio from part of the listening audio.
+  "replay_audio": "t1-lis-sec2-q5-rep"
+}
+
+// Listening Question object -- classify
+// See TPO4 section 1, question 7
+{
+  "type": "classify",
+
+  "description": "Indicate whether each of the activities below describes a displacement activity",
+
+  "options": [
+    "More oil is extracted from the sea than from land",
+    "..."
+  ],
+
+  // See TPO2 Listening Section 1, question 2
+  // Sometimes three classes.
+  "classes": [
+    "Include in report",
+    "Not include in report"
+  ],
+
+  // In "classify" questions, this an array of array, where the sub-array corresponds to the list of correct answers for that class.
+  "answers": [
+    [0, 2],
+    [1, 3]
+  ],
+
+  // Common fields
+  "points": 1,
+  "audio": "t1-lis-sec2-q5",
+  "replay_audio": "t1-lis-sec2-q5-rep"
+}
+
+// Listening Question object -- ordering
+// See TPO4-Listening section 2, question 14
+{
+  "type": "ordering",
+
+  "description": "The class discusses some important events related to government support for the arts in the United States. Put the events in order from earliest to latest.",
+
+  "options": [
+    "More oil is extracted from the sea than from land",
+    "..."
+  ],
+
+  // Correct ordering of the options.
+  "answers": [0, 2, 1, 3],
+
+  // Common fields
+  "points": 1,
+  "audio": "t1-lis-sec2-q5",
+  "replay_audio": "t1-lis-sec2-q5-rep"
+}
