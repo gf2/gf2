@@ -3,7 +3,6 @@ gf2
 
 folders
 
--web   the appeigine
-  |
-  |
-  -- app   the dart project folder
+web   the appeigine
+
+web/app   the dart project folder
