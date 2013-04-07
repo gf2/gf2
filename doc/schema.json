@@ -1,0 +1,185 @@
+// Here we describe data schema. The schema will be used in restful api.
+
+// Section object
+{
+  "type": "reading", // reading, listening, speaking, writing
+}
+
+// Reading section object
+{
+  // Title of the passage.
+  "title": "Seventeenth-Century European Economic Growth",
+
+  // optional image shown with the passage. See reading in TPO9-1 
+  "image": "/static/img/xxx.jpg",
+
+  // Text of the paragraphs, including some tags.
+  "paragraphs": [
+
+    // comedy is bolded for the forth question.
+    "First of all, I like <b q="3">comedy</b> so much ....",
+
+    "This is second paragraph, indexed as 1 ... ",
+
+    "....",
+
+    // The sixth question is a sentence insertion question, we mark the places to insert using <insert>
+    "So, <insert q="5" option="0"> blah, blah <insert q="5" option="0">",
+
+    "However, <insert q="5" option="1"> blah, blah <insert q="5" option="2">",
+
+    "Finally, ... " 
+  ], 
+
+  "questions": [
+    readingQuestionObject1,
+    readingQuestionObject2
+  ]
+}
+
+// Reading Question object -- multichoice
+{
+  // "multichoice"
+  "type": "multichoice",
+
+  // Index of the corrsponding paragraph. At which position the passage would be displayed.
+  "paragraph": 0,
+
+  // How many points does this question worth.
+  "points": 1,
+
+  "description": "Why does the author mention <b>comedy</b>",
+
+  // Usually four options.
+  "options": [
+    "More oil is extracted from the sea than from land",
+    "..."
+  ],
+  
+  "answer" : 0, 
+}
+
+// Reading Question object -- insert
+{
+  "type": "insert",
+
+  "paragraph": 0,
+
+  "points": 1,
+
+  // The sentence to be inserted. 
+  "description": "The factories did not have to go to the streams when power could come to the factories",
+
+  "answer": 3,
+}
+
+
+// Reading Question object -- summary
+{
+  "type": "summary",
+
+  "points": 2,
+
+  // One of the four ideas given in the classify/summary question. 
+  "description": "An expedition to the Mediterranean answered some long-standing questions about the ocean’s history.",
+
+  "options": [
+     "idea1",
+     "idea2",
+     "...",
+     "idea6"
+  ],
+
+  "answers": [0, 2, 4],
+}
+
+
+// Listening section object
+{
+
+  // background image for the listening.
+  "image": "/static/img/xxx.jpg",
+
+  // Globally unique audio id. Playing url can be constructed from this directly.
+  "audio": "t1-lis-sec2-main"
+
+  "questions": [
+    listeningQuestionObject1,
+    listeningQuestionObject2
+  ]
+}
+
+// Listening Question object -- multichoice
+{
+  "type": "multichoice",
+
+  "points": 1,
+
+  "description": "What does the teacher mean when she says this.",
+
+  "options": [
+    "She means aaa",
+    "..."
+  ],
+
+  // Array of correct answers.
+  "answers": [0, 2],
+
+  // The audio asking the questions, 
+  "audio": "t1-lis-sec2-q5",
+
+  // Replay audio from part of the listening audio.
+  "replay_audio": "t1-lis-sec2-q5-rep"
+}
+
+// Listening Question object -- classify
+// See TPO4 section 1, question 7
+{
+  "type": "classify",
+
+  "description": "Indicate whether each of the activities below describes a displacement activity",
+
+  "options": [
+    "More oil is extracted from the sea than from land",
+    "..."
+  ],
+
+  // See TPO2 Listening Section 1, question 2
+  // Sometimes three classes.
+  "classes": [
+    "Include in report",
+    "Not include in report"
+  ],
+
+  // In "classify" questions, this an array of array, where the sub-array corresponds to the list of correct answers for that class.
+  "answers": [
+    [0, 2],
+    [1, 3]
+  ],
+
+  // Common fields
+  "points": 1,
+  "audio": "t1-lis-sec2-q5",
+  "replay_audio": "t1-lis-sec2-q5-rep"
+}
+
+// Listening Question object -- ordering
+// See TPO4-Listening section 2, question 14
+{
+  "type": "ordering",
+
+  "description": "The class discusses some important events related to government support for the arts in the United States. Put the events in order from earliest to latest.",
+
+  "options": [
+    "More oil is extracted from the sea than from land",
+    "..."
+  ],
+
+  // Correct ordering of the options.
+  "answers": [0, 2, 1, 3],
+
+  // Common fields
+  "points": 1,
+  "audio": "t1-lis-sec2-q5",
+  "replay_audio": "t1-lis-sec2-q5-rep"
+}
