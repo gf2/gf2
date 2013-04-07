@@ -1,0 +1,60 @@
+Here we describe data schema.
+The schema will be used in restful api.
+
+// Section object
+{
+  "type": "reading", // reading, listening, speaking, writing
+}
+
+// Reading section object
+{
+  // Text of the paragraphs, including some tags.
+  "paragraphs": [
+
+    // comedy is bolded for the forth question.
+    "First of all, I like <b q="3">comedy</b> so much ....",
+
+    "This is second paragraph, indexed as 1 ... ",
+
+    "....",
+
+    // The sixth question is a sentence insertion question, we mark the places to insert using <insert>
+    "So, <insert q="5" option="0"> blah, blah <insert q="5" option="0">",
+
+    "However, <insert q="5" option="1"> blah, blah <insert q="5" option="2">",
+
+    "Finally, ... " 
+  ], 
+
+  "questions": [
+    {
+      "type": "multichoice", // multichoice, insert, drag
+
+      // Index of the corrsponding paragraph. At which position the passage would be displayed.
+      // Leave empty for drag question, as passage is not shown in the last question.
+      "paragraph": 0,
+
+      // For multichoice, this is the description.
+      // For insert, this will be the sentence to be inserted. 
+      // For drag. this is the first answer provided in the description.
+      "description": "Why does the author mention <b>comedy</b>",
+
+      // Usually four options, six options for last question.
+      "options": [
+        "More oil is extracted from the sea than from land",
+        "..."
+      ],
+
+      // Num of answer choises.
+      // Usually be 1, for multichoice questions.
+      // Could be >1, for multi-answer multichoice questions.
+      // Usually be 3, for drag questions.
+      "choice_number": 1,
+
+      // Usually one answer. Three answers for the dragging question.
+      "answers": [
+        0, 2
+      ]
+    }
+  ]
+}
