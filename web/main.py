@@ -15,11 +15,13 @@
 # limitations under the License.
 #
 import webapp2
-
-class MainHandler(webapp2.RequestHandler):
-    def get(self):
-        self.response.write('Hello GF2 world!')
+from handlers.audio import *
+from handlers.site import *
+from configs import *
 
 app = webapp2.WSGIApplication([
-    ('/', MainHandler)
+    (uri_map['upload_audio'], AudioUploadHandler),
+    (uri_map['upload_audio_form'], AudioUploadFormHandler),
+    (uri_map['play_audio'], AudioPlayHandler),
+    (uri_map['home_page'], HomePageHandler),
 ], debug=True)
