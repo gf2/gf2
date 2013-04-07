@@ -1,3 +1,5 @@
+// See https://code.google.com/p/wami-recorder/
+
 var Wami = window.Wami || {};
 
 // Returns a (very likely) unique string with of random letters and numbers
