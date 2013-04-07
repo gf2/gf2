@@ -208,11 +208,8 @@
 
     "passage": "Someone wrote a letter to oppose A, student B, C discuss about the letter",
 
-    // Now listen to students discussing opinions in the letter.
-    "audio2": "audio_key_xxx",
-
     // Student discussion.
-    "audio3": "audio_key_xxx",
+    "audio2": "audio_key_xxx",
 
     // background image for student discussion.
     "image": "image_url",
@@ -220,7 +217,7 @@
     "question": "Explain why student B disagree with the reasons expressed in the letter",
 
     // Audio for the question
-    "audio4": "audio_key_xxx",
+    "audio3": "audio_key_xxx",
   },
 
   "question4": {
@@ -228,26 +225,20 @@
     "audio1": "audio_key_xxx",
     "passage": "These kind of implicit pressures to conform group think...",
 
-    // Now listen to a talk about this passage in a business culture class.
-    "audio2": "audio_key_xxx",
-
     // The talk
-    "audio3": "audio_key_xxx",
+    "audio2": "audio_key_xxx",
 
     "image": "image_url",
 
     "question": "Explain groupthink and its effects using example of the computer company",
 
     // Audio for the question
-    "audio4": "audio_key_xxx",
+    "audio3": "audio_key_xxx",
   },
 
   "question5": {
-    // Now listen to a coveration between two students.
+    // Conversation between two students.
     "audio1": "audio_key_xxx",
-
-    // Two students talking...
-    "audio2": "audio_key_xxx",
 
     // image for two students talking.
     "image": "image_url",
@@ -255,7 +246,7 @@
     "question": "The speakers discuss two possible soputions to the woman's problem, state which solution you recommend and why",
 
     // Audio for the question
-    "audio3": "audio_key_xxx"
+    "audio2": "audio_key_xxx"
   },
 
   "question6": {
