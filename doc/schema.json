@@ -183,3 +183,106 @@
   "audio": "t1-lis-sec2-q5",
   "replay_audio": "t1-lis-sec2-q5-rep"
 }
+
+// Speaking section object
+// Every question of the 6 is different, so define a schema for each one.
+{
+  
+  "questions": [
+    // Q-1. Talk about a familiar topic
+    {
+      "topic": "Talk about a book you've read",
+      // Audio for the topic
+      "audio": "audio_key_xxx",
+    },
+
+    // Q-2 Give opinion about a familiar topic
+    {
+      "topic": "Some people believe A, some believe B, what's your opinion",
+      // Audio for the topic
+      "audio": "audio_key_xxx",
+    },
+
+    // Q-3 Read a passage and listen to a talk
+    {
+      // There is a plan A, someone wrote a letter to oppose A, .... Now read the letter, and ,,,
+      "audio1": "audio_key_xxx", 
+
+      "passage": "Someone wrote a letter to oppose A, student B, C discuss about the letter",
+
+      // Student discussion.
+      "audio2": "audio_key_xxx",
+
+      // background image for student discussion.
+      "image": "image_url",
+
+      "question": "Explain why student B disagree with the reasons expressed in the letter",
+
+      // Audio for the question
+      "audio3": "audio_key_xxx",
+    },
+
+    // Q-4 Read a passage and listen to a talk
+    {
+      // Now read the passage about groupthink, begin reading now.
+      "audio1": "audio_key_xxx",
+      "passage": "These kind of implicit pressures to conform group think...",
+
+      // The talk
+      "audio2": "audio_key_xxx",
+
+      "image": "image_url",
+
+      "question": "Explain groupthink and its effects using example of the computer company",
+
+      // Audio for the question
+      "audio3": "audio_key_xxx",
+    },
+
+    // Q-5 Listen to a conversation, state own opinion
+    {
+      // Conversation between two students.
+      "audio1": "audio_key_xxx",
+
+      // image for two students talking.
+      "image": "image_url",
+
+      "question": "The speakers discuss two possible soputions to the woman's problem, state which solution you recommend and why",
+
+      // Audio for the question
+      "audio2": "audio_key_xxx"
+    },
+
+    // Q-6 Listen to a lecture, answer the question.
+    {
+      // A lecture
+      "audio1": "audio_key_xxx",
+
+      // image for the lecture.
+      "image": "image_url",
+
+      "question": "Using the research described by the professor, explains what scientest have learned about the mathematical abilities of babies.",
+
+      // Audio for the question
+      "audio2": "audio_key_xxx"
+    }
+  ]
+}
+
+// Writing section object
+{
+  "questions": [
+    {
+      "topic": "A long paragraph about a topic..",
+      // An audio about a lecture.
+      "audio": "audio_key_xxx",
+
+      // image for the lecture.
+      "image": "image_url",
+    },
+
+    {
+      "question": "Do you agree or disagree...."
+    }
+  ]
+}
