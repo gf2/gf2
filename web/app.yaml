@@ -13,8 +13,16 @@ handlers:
   static_files: favicon.ico
   upload: favicon\.ico
 
+- url: /packages/(.*)/(.*)
+  static_files: app/packages/\1/\2
+  upload: app/packages/(.*)/(.*)
+
+- url: /out/packages/(.*)/(.*)
+  static_files: app/packages/\1/\2
+  upload: app/packages/(.*)/(.*)
+
 - url: .*
-  script: main.app
+  static_dir: app/web/out
 
 libraries:
 - name: webapp2
