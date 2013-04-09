@@ -1,5 +1,6 @@
 from google.appengine.ext import db
 from handlers import BasePageHandler
+from gaesessions import get_current_session
 import webapp2
 import hashlib
 
@@ -20,6 +21,8 @@ class LoginHandler(BasePageHandler):
       self.response.out.write('Login failed.')
     else:
       # add session
+      session = get_current_session()
+      session['me'] = users[0]
       self.response.out.write('Login successfully.')
 
 class SignupHandler(BasePageHandler):
@@ -35,6 +38,8 @@ class SignupHandler(BasePageHandler):
     user.nickname = self.request.get('nickname')
     user.password = hashlib.sha1(self.request.get('password')).hexdigest()
     user.put()
+    session = get_current_session()
+    session['me'] = user
     self.response.out.write('Signup successfully.')
 
 class LogoutHandler(BasePageHandler):
