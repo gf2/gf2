@@ -21,8 +21,8 @@ handlers:
   static_files: app/packages/\1/\2
   upload: app/packages/(.*)/(.*)
 
-- url: .*
-  static_dir: app/web/out
+- url: /.*
+  script: main.app
 
 libraries:
 - name: webapp2
