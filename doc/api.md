@@ -37,8 +37,8 @@ limit: Optional, default 10, num of tests to return.
       // Whether the user has paid for this test.
       "has_paid": True,
       
-      // Test history id, presents only when the user has completed the test.
-      "history_id": "id_history_123",
+      // Whether the user has completed the test before. If so, we'll show a link to view test history.
+      "has_completed": True,
       
       // How many retries left 
       "remain_retry": 2,
