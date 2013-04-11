@@ -74,9 +74,9 @@ password: string
   "status": "OK",
 }
 
-// Fail:
+// Failure:
 {
-  "result": "FAIL",
+  "result": "FAILURE",
   "status": "LOGGED_OUT"
 }
 </code></pre>
