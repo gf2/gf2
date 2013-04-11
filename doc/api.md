@@ -4,15 +4,117 @@
 For all the api interfaces, the server will return json format data by default.
 However, if you specify a "jsonp" parameter in the request, the server will return a jsonp format data.
 
+
+Use GET method by default, unless specified as POST.
+
+
+For login requred APIs, return { "status": "LOGGED_OUT" } if user not logged in. 
+
 ----
 ###### Path:
-/a/get_tests
+/a/check_email
+
+###### Require login:
+No
+
+###### Parameters:
+email: string
+
+###### Returns:
+<pre><code>
+{
+  "available": False,
+}
+</code></pre>
+
+----
+###### Path (POST):
+/a/signup
+
+###### Require login:
+No
+
+###### Parameters:
+email: Required
+
+nickname: Optional
+
+password
+
+
+###### Returns:
+<pre><code>
+{
+  "result": "SUCCESS", // or "EMAIL_USED", "INVALID_EMAIL", "INVALID_PASSWORD"
+}
+</code></pre>
+
+----
+###### Path (POST):
+/a/login
+
+###### Require login:
+No
+
+###### Parameters:
+email: string
+
+password: string
+
+
+###### Returns:
+<pre><code>
+// Success
+{
+  "result": "SUCCESS",
+  "user": {
+    "nickname": "Zero",
+    "email": "zero@gmail.com"
+  }
+  "status": "OK",
+}
+
+// Failure:
+{
+  "result": "FAILURE",
+  "status": "LOGGED_OUT"
+}
+</code></pre>
+
+
+----
+###### Path:
+/a/get_user_info
+
+###### Require login:
+Yes
+
+###### Parameters:
+No params, check user session.
+
+###### Returns:
+<pre><code>
+// Logged in user:
+{
+  "user": {
+    "nickname": "Zero",
+    "email": "zero@gmail.com"
+  }
+  "status": "OK"
+}
+
+// Logged out user:
+{
+  "status": "LOGGED_OUT"
+}
+</code></pre>
+
+----
+###### Path:
+/a/get_problemsets
 
 ###### Description:
-Get a list of tests.
-
-###### Method:
-Get
+Get a list of ProblemSets.
 
 ###### Require login:
 Yes
@@ -27,7 +129,7 @@ limit: Optional, default 10, num of tests to return.
 {
   "results": [
     {
-      "test_id": "id_tpo1",
+      "problemset_id": "id_tpo1",
       
       "name": "TPO 1 - The Official Test",
       
