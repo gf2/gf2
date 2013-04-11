@@ -13,7 +13,7 @@ uri_map = {
     "upload_audio" : r'/upload_audio',
     "play_audio" : r'/play_audio/([^/]+)?',
     "home_page": r'/',
-    "login": r'/login',
-    "signup": r'/signup',
+    "login": r'/a/login',
+    "signup": r'/a/signup',
 }
 
