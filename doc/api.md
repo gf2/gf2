@@ -28,7 +28,7 @@ email: string
 </code></pre>
 
 ----
-###### Path:
+###### Path (POST):
 /a/signup
 
 ###### Require login:
