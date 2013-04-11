@@ -43,7 +43,7 @@ password
 </code></pre>
 
 ----
-###### Path:
+###### Path (POST):
 /a/login
 
 ###### Require login:
