@@ -38,10 +38,6 @@ No params, check user session.
 No
 
 ###### Parameters:
-// Login by either nickname or email
-
-nickname: string
-
 email: string
 
 password: string
