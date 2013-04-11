@@ -5,6 +5,78 @@ For all the api interfaces, the server will return json format data by default.
 However, if you specify a "jsonp" parameter in the request, the server will return a jsonp format data.
 
 ###### Path:
+/a/check_email
+
+###### Require login:
+No
+
+###### Parameters:
+email: string
+
+###### Returns:
+<pre><code>
+{
+  "available": False,
+}
+</code></pre>
+
+----
+###### Path:
+/a/signup
+
+###### Require login:
+No
+
+###### Parameters:
+email: Required
+
+nickname: Optional
+
+password
+
+
+###### Returns:
+<pre><code>
+{
+  "result": "SUCCESS", // or "EMAIL_USED", "INVALID_EMAIL", "INVALID_PASSWORD"
+}
+</code></pre>
+
+----
+###### Path:
+/a/login
+
+###### Require login:
+No
+
+###### Parameters:
+email: string
+
+password: string
+
+
+###### Returns:
+<pre><code>
+// Success
+{
+  "result": "SUCCESS",
+  "user": {
+    "nickname": "Zero",
+    "email": "zero@gmail.com"
+  }
+  "status": "OK",
+}
+
+// Fail:
+{
+  "result": "FAIL",
+  "status": "LOGGED_OUT"
+}
+</code></pre>
+
+
+----
+###### Path:
 /a/get_user_info
 
 ###### Require login:
@@ -29,38 +101,6 @@ No params, check user session.
   "status": "LOGGED_OUT"
 }
 </code></pre>
-
-----
-###### Path:
-/a/login
-
-###### Require login:
-No
-
-###### Parameters:
-email: string
-
-password: string
-
-
-###### Returns:
-<pre><code>
-// Success
-{
-  "user": {
-    "nickname": "Zero",
-    "email": "zero@gmail.com"
-  }
-  "status": "OK",
-}
-
-// Fail:
-{
-  "message": "User doesn't exist",
-  "status": "LOGGED_OUT"
-}
-</code></pre>
-
 
 ----
 ###### Path:
