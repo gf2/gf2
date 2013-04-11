@@ -10,7 +10,7 @@ Use GET method by default, unless specified as POST.
 
 For login requred APIs, return { "status": "LOGGED_OUT" } if user not logged in. 
 
-
+----
 ###### Path:
 /a/check_email
 
