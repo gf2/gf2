@@ -4,15 +4,39 @@
 For all the api interfaces, the server will return json format data by default.
 However, if you specify a "jsonp" parameter in the request, the server will return a jsonp format data.
 
+###### Path:
+/a/get_user_info
+
+###### Require login:
+Yes
+
+###### Parameters:
+No params, check user session.
+
+###### Returns:
+<pre><code>
+// Logged in user:
+{
+  "user": {
+    "nickname": "Zero",
+    "email": "zero@gmail.com"
+  },
+  "status": "OK",
+}
+
+// Logged out user:
+{
+  "status": "LOGGED_OUT",
+}
+</code></pre>
+
+
 ----
 ###### Path:
-/a/get_tests
+/a/get_problemsets
 
 ###### Description:
-Get a list of tests.
-
-###### Method:
-Get
+Get a list of ProblemSets.
 
 ###### Require login:
 Yes
@@ -27,7 +51,7 @@ limit: Optional, default 10, num of tests to return.
 {
   "results": [
     {
-      "test_id": "id_tpo1",
+      "problemset_id": "id_tpo1",
       
       "name": "TPO 1 - The Official Test",
       
