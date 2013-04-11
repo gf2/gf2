@@ -4,6 +4,13 @@
 For all the api interfaces, the server will return json format data by default.
 However, if you specify a "jsonp" parameter in the request, the server will return a jsonp format data.
 
+
+Use GET method by default, unless specified as POST.
+
+
+For login requred APIs, return { "status": "LOGGED_OUT" } if user not logged in. 
+
+
 ###### Path:
 /a/check_email
 
