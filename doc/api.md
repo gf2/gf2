@@ -20,13 +20,48 @@ No params, check user session.
   "user": {
     "nickname": "Zero",
     "email": "zero@gmail.com"
-  },
-  "status": "OK",
+  }
+  "status": "OK"
 }
 
 // Logged out user:
 {
-  "status": "LOGGED_OUT",
+  "status": "LOGGED_OUT"
+}
+</code></pre>
+
+----
+###### Path:
+/a/login
+
+###### Require login:
+No
+
+###### Parameters:
+// Login by either nickname or email
+
+nickname: string
+
+email: string
+
+password: string
+
+
+###### Returns:
+<pre><code>
+// Success
+{
+  "user": {
+    "nickname": "Zero",
+    "email": "zero@gmail.com"
+  }
+  "status": "OK",
+}
+
+// Fail:
+{
+  "message": "User doesn't exist",
+  "status": "LOGGED_OUT"
 }
 </code></pre>
 
