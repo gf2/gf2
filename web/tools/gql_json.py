@@ -1,7 +1,3 @@
-"""
-    Tool to transfer between json and obj.
-"""
-
 import simplejson
 from google.appengine.ext import db
 
