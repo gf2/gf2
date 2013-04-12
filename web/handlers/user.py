@@ -1,15 +1,8 @@
-from google.appengine.ext import db
 from handlers import BasePageHandler
 from gaesessions import get_current_session
 import webapp2
 import hashlib
-
-class User(db.Model):
-  email = db.EmailProperty()
-  nickname = db.StringProperty()
-  created_time = db.DateTimeProperty(auto_now_add = True)
-  password = db.StringProperty()
-  status = db.IntegerProperty()   # User's payment status
+from models.users import User
 
 class LoginHandler(BasePageHandler):
   def get(self):
