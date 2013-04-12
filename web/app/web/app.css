@@ -29,3 +29,7 @@ h1, p {
   font-size: 24pt;
   margin-bottom: 20px;
 }
+
+input {
+  display: block;
+}

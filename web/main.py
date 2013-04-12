@@ -17,6 +17,7 @@
 import webapp2
 from handlers.audio import *
 from handlers.site import *
+from handlers.user import *
 from configs import *
 
 app = webapp2.WSGIApplication([
@@ -24,4 +25,6 @@ app = webapp2.WSGIApplication([
     (uri_map['upload_audio_form'], AudioUploadFormHandler),
     (uri_map['play_audio'], AudioPlayHandler),
     (uri_map['home_page'], HomePageHandler),
+    (uri_map['login'], LoginHandler),
+    (uri_map['signup'], SignupHandler),
 ], debug=True)
