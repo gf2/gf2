@@ -11,4 +11,3 @@ class LoginComponent extends WebComponent {
     document.query('#message').text = "Hello World" + count.toString();
   }
 }
-
