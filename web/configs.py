@@ -15,6 +15,7 @@ uri_map = {
     "home_page": r'/',
     "login": r'/a/login',
     "signup": r'/a/signup',
+    "signup_page": r'/p/signup',
     "check_email": r'/a/check_email',
 }
 

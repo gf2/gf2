@@ -2,7 +2,7 @@ part of api;
 
 class UserHelper {
   static getUser() {
-    BaseJsonApi.get()
+   // BaseJsonApi.get()
   }
   
   static login(email, password) {
@@ -11,8 +11,8 @@ class UserHelper {
   
   static signup(email, nickname, password) {
     return BaseJsonApi.post(
-        new UrlBuilder('/a/signup',
-            {"email":email, "nickname": nickname,)
+        '/a/signup', {"email":email,"nickname": nickname, "password": password}).then(
+            (response) => response["result"]);
   }
 }
 
@@ -26,12 +26,12 @@ class EmailChecker {
     this.email = email;
   }
   
-  Future<bool> check(func) {
+  Future<bool> check() {
     if (!emailExp.hasMatch(email)) {
       func(false);
     } else {
       return BaseJsonApi.get('/a/check_email?email=' + email).then(
-          (response) => response["available"]).then(func);
+          (response) => response["available"]);
     }
   }
 }
