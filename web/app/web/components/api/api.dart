@@ -4,6 +4,8 @@ import 'dart:async';
 import 'dart:html';
 import 'dart:json';
 
+part 'user.dart';
+
 class BaseApi {
   static Future<String> get(url) {
     // Stub API calls here.

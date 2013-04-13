@@ -1,13 +1,17 @@
-<element name="gf2-signup" constructor="SignupComponent" extends="div">
-  <template>
-    <span id="signup-message"></span>
-    <label for="signup-email">email</label>
-    <input type="text" name="email" id="signup-email" on-key-up="onEmailChange($event)" >
-    <br/>
-    <label for="signup-password">password</label>
-    <input type="password" name="password" id="signup-password" >
-    <button on-click="onSignupClick($event)" id="signup-submit">Signup</button>
-  </template>
-  
-  <script type="application/dart" src="script.dart"></script>
-</element>
+<!DOCTYPE html>
+  <body>
+    <element name="gf2-signup" constructor="SignupComponent" extends="div">
+      <template>
+        <span id="signup-message"></span>
+        <label for="signup-email">email</label>
+        <input type="text" name="email" id="signup-email" on-key-up="onEmailChange($event)" >
+        <br/>
+        <label for="signup-password">password</label>
+        <input type="password" name="password" id="signup-password" >
+        <button on-click="onSignupClick($event)" id="signup-submit">Signup</button>
+      </template>
+      
+      <script type="application/dart" src="script.dart"></script>
+    </element>
+  </body>
+</html>
