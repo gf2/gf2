@@ -1,3 +1,5 @@
+library user_api;
+
 import 'dart:async';
 import 'base.dart';
 

@@ -27,4 +27,5 @@ app = webapp2.WSGIApplication([
     (uri_map['home_page'], HomePageHandler),
     (uri_map['login'], LoginHandler),
     (uri_map['signup'], SignupHandler),
+    (uri_map['check_email'], CheckEmailHandler),
 ], debug=True)

@@ -17,3 +17,12 @@ class BasePageHandler(webapp2.RequestHandler):
         template = jinja_environment.get_template("templates/" + page_name)
         values["uri_map"] = configs.uri_map
         self.response.out.write(template.render(values))
+
+class BaseApiHandler(webapp2.RequestHandler):
+    def render_dict_as_json(self, json_dict):
+        if self.request.get("jsonp"):
+            self.response.headers['Content-Type'] = 'text/javascript; charset=utf-8'
+            self.response.out.write('%s(%s)' % (self.request.get("jsonp"), json.dumps(json_dict)))
+        else:
+            self.response.headers['Content-Type'] = 'application/json; charset=utf-8'
+            self.response.out.write(json.dumps(json_dict))

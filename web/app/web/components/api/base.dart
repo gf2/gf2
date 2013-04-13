@@ -6,7 +6,8 @@ import 'dart:json';
 
 class BaseApi {
   static Future<String> get(url) {
-    return new Future.of(() => '{"available":true}'); // Stub API calls here.
+    // Stub API calls here.
+    // return new Future.of(() => '{"available":true}');
     return HttpRequest.getString(url);
   }
 }

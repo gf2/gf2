@@ -11,7 +11,7 @@ from google.appengine.ext.webapp import blobstore_handlers
 from configs import *
 
 class Audio(db.Model):
-  blob_key = blobstore.BlobReferenceProperty()
+    blob_key = blobstore.BlobReferenceProperty()
 
 class AudioUploadFormHandler(webapp.RequestHandler):
     def get(self):
