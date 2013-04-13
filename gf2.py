@@ -45,6 +45,13 @@ def deploy():
       appcofig_file.write(appconfig)
   print('new app.yaml generated with application id %s.' % application_id)
 
+  'Confirm before deploying to prod env.'
+  if args.instance == 'prod':
+    resp = raw_input('Are you sure to deploy to prod env? y/n\n')
+    if resp != 'y' and resp != 'Y':
+      print('Deploy to prod env canceled!');
+      return
+
   print('appcfg.py update web --email=%s' % gf2config['email'])
   _run_command('appcfg.py update web --email=%s' % gf2config['email'])
   
@@ -58,6 +65,12 @@ def _rm_if_exist(path):
       shutil.rmtree(path)
     else:
       os.remove(path)
+
+def _check_tool(tool_name):
+  rc = subprocess.call(['which', tool_name])
+  if rc != 0:
+    return False
+  return True
 
 def _load_gf2config():
   gf2config_file = open('.gf2')
@@ -74,6 +87,10 @@ actions_map = {'clean': clean,
 
 
 if __name__ == '__main__':
+  assert _check_tool('pub'), 'hey, pub not found, add dart SDK into your $PATH'
+  assert _check_tool('dart2js'), 'hey, dart2js not found, add dart SDK into your $PATH'
+  assert _check_tool('dart'), 'hey, dart not found, add dart SDK into your $PATH'
+  assert _check_tool('appcfg.py'), 'hey, add GAE python SDK into you $PATH'
   _load_gf2config()
   parser = argparse.ArgumentParser(description='gf2 tools.')
   parser.add_argument('action', help = 'clean, build, deploy', choices = ['clean', 'build', 'deploy'])
