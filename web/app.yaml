@@ -1,5 +1,5 @@
 # Rename application when deploying.
-application: gf2-zero
+application: gf2-roba
 version: 1
 runtime: python27
 api_version: 1
