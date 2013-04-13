@@ -33,9 +33,25 @@ class SignupHandler(BasePageHandler):
     user.put()
     session = get_current_session()
     session['me'] = user
-    self.response.out.write('Signup successfully.')
+    # self.response.out.write('Signup successfully.')
+    self.render_dict_as_json({"result": "SUCCESS"})
 
 class LogoutHandler(BasePageHandler):
   def get(self):
     pass
+
+class GetUserInfoHandler(BasePageHandler):
+  def get(self):
+    if session['me']:
+      self.render_dict_as_json({
+        "user:" {
+          "nickname": session['me'].nickname,
+          "email": session['me'].email,
+        },
+        "status": "OK"
+      })
+    else:
+      self.render_dict_as_json({
+        "status": "LOGGED_OUT"
+      });
 
