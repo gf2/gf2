@@ -1,13 +1,13 @@
 <!DOCTYPE html>
-  <body>    
+  <body>   
     <element name="gf2-login" constructor="LoginComponent" extends="div">
       <template>
-        <span id="message"></span>
-        <label for="username">username</label>
-        <input type="text" name="username" id="username" >
-        <label for="password">password</label>
-        <input type="password" name="password" id="password" >
-        <button on-click="onLoginClick($event)" id="submit">submit</button>
+        <span id="login-message"></span>
+        <label for="login-email">email</label>
+        <input type="text" name="email" id="login-email" >
+        <label for="login-password">password</label>
+        <input type="password" name="password" id="login-password" >
+        <button on-click="onLoginClick($event)" id="login-submisubmit">submit</button>
       </template>
       
       <script type="application/dart" src="script.dart"></script>
