@@ -35,4 +35,5 @@ app = webapp2.WSGIApplication([
     # below urls are just for test
     (r'/a/add_problemset', AddProblemSetHandler),
     (r'/a/try_problemset', TryProblemSetHandler),
+    (r'/a/pay_problemset', PayProblemSetHandler),
 ], debug=True)
