@@ -43,9 +43,17 @@ class UrlBuilder {
 }
 
 class BaseApi {
+  static String getNow(String url, [Map params = null]) {
+    if (params != null) {
+      url = new UrlBuilder(url, params).get();
+    }
+    HttpRequest req = new HttpRequest();
+    req.open("GET", url, async: false);
+    req.send();
+    return req.responseText;
+  }
+  
   static Future<String> get(String url, [Map params = null]) {
-    // Stub API calls here.
-    // return new Future.of(() => '{"available":true}');
     if (params != null) {
       url = new UrlBuilder(url, params).get();
     }
@@ -61,6 +69,10 @@ class BaseApi {
 }
 
 class BaseJsonApi extends BaseApi {
+  static Map getNow(String url, [Map params = null]) {
+    return parse(BaseApi.getNow(url, params));
+  }
+  
   static Future<Map> get(String url, [Map params = null]) {
     return BaseApi.get(url, params).then((response) => parse(response));
   }

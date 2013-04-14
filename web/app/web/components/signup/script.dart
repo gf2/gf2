@@ -15,7 +15,7 @@ class SignupComponent extends WebComponent {
   
   onSignupClick(MouseEvent event) {
      document.query('#signup-message').text = "Thanks for signup";
-     UserHelper.signup(
+     UserManager.signup(
          document.query('#signup-email').value,
          document.query('#signup-nickname').value,
          document.query('#signup-password').value).then(signupResultHandler);
