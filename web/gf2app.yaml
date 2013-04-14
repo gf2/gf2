@@ -24,6 +24,9 @@ handlers:
 - url: /a/.*
   script: main.app
 
+- url: /p/.*
+  script: main.app
+
 - url: .*
   static_dir: app/web/out
 
