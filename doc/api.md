@@ -46,6 +46,34 @@ password
 <pre><code>
 {
   "result": "SUCCESS", // or "EMAIL_USED", "INVALID_EMAIL", "INVALID_PASSWORD"
+  // UserObject
+  "user": {
+    "nickname": "Zero",
+    "email": "zero@gmail.com",
+    // Display language, can be changed by user.
+    // Alpha-2 language code. http://en.wikipedia.org/wiki/ISO_639-1
+    "language": "en",
+    // Country is determined by IP->Geo lookup, for potential legal contraints.
+    // Alpha-2 country code. http://en.wikipedia.org/wiki/ISO_3166-1_alpha-2 
+    "country": "CN"
+  }
+}
+</code></pre>
+
+----
+###### Path (POST):
+/a/set_language
+
+###### Require login:
+Yes
+
+###### Parameters:
+language: string  // Such as "en", "us"
+
+###### Returns:
+<pre><code>
+{
+  "result": "SUCCESS" // Or "FAILURE", "NOT_SUPPORTED"
 }
 </code></pre>
 
@@ -67,10 +95,7 @@ password: string
 // Success
 {
   "result": "SUCCESS",
-  "user": {
-    "nickname": "Zero",
-    "email": "zero@gmail.com"
-  }
+  "user": UserObject, // See above for definition.
   "status": "OK",
 }
 
@@ -96,10 +121,7 @@ No params, check user session.
 <pre><code>
 // Logged in user:
 {
-  "user": {
-    "nickname": "Zero",
-    "email": "zero@gmail.com"
-  }
+  "user": UserObject, // See above for definition.
   "status": "OK"
 }
 
