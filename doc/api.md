@@ -50,8 +50,12 @@ password
   "user": {
     "nickname": "Zero",
     "email": "zero@gmail.com",
-    "language": "en",  // Display language, can be changed by user.
-    "country": "CN"  // Country is determined by IP->Geo lookup, for potential legal contraints.
+    // Display language, can be changed by user.
+    // Alpha-2 language code. http://en.wikipedia.org/wiki/ISO_639-1
+    "language": "en",
+    // Country is determined by IP->Geo lookup, for potential legal contraints.
+    // Alpha-2 country code. http://en.wikipedia.org/wiki/ISO_3166-1_alpha-2 
+    "country": "CN"
   }
 }
 </code></pre>
