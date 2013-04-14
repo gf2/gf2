@@ -53,7 +53,7 @@ def deploy():
       return
 
   if args.instance == 'local':
-    _run_command('dev_appserver.py web/ -h 8080')
+    _run_command('dev_appserver.py web/ --port 8080')
   else:
     _run_command('appcfg.py update web --email=%s' % gf2config['email'])
   
