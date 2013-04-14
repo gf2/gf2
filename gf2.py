@@ -52,8 +52,10 @@ def deploy():
       print('Deploy to prod env canceled!');
       return
 
-  print('appcfg.py update web --email=%s' % gf2config['email'])
-  _run_command('appcfg.py update web --email=%s' % gf2config['email'])
+  if args.instance == 'local':
+    _run_command('dev_appserver.py web/ -h 8080')
+  else:
+    _run_command('appcfg.py update web --email=%s' % gf2config['email'])
   
 def _run_command(cmd):
   print(cmd)
@@ -94,7 +96,7 @@ if __name__ == '__main__':
   _load_gf2config()
   parser = argparse.ArgumentParser(description='gf2 tools.')
   parser.add_argument('action', help = 'clean, build, deploy', choices = ['clean', 'build', 'deploy'])
-  parser.add_argument('--instance', help = 'Specify the instance you wanna deply to. Instance name is defined in .gf2', choices = ['dev', 'prod'])
+  parser.add_argument('--instance', help = 'Specify the instance you wanna deply to. Instance name is defined in .gf2', choices = ['dev', 'prod', 'local'])
 
   args = parser.parse_args()
   actions_map[args.action]()
