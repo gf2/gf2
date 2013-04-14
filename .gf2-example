@@ -1,0 +1,10 @@
+# You need to rename this file to '.gf2' and update necessary fields.
+#
+email=nicholas.zhaoyu@gmail.com
+
+# The dev env application id used when you run 'python gf2.py deploy --instance=dev'
+dev-application-id=nich01as-us
+
+# The prod env application id used when you run 'python gf2.py deploy --instance=prod'
+prod-application-id=gf2-prod
+
