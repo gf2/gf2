@@ -46,6 +46,30 @@ password
 <pre><code>
 {
   "result": "SUCCESS", // or "EMAIL_USED", "INVALID_EMAIL", "INVALID_PASSWORD"
+  // UserObject
+  "user": {
+    "nickname": "Zero",
+    "email": "zero@gmail.com",
+    "language": "en",  // Display language, can be changed by user.
+    "country": "CN"  // Country is determined by IP->Geo lookup, for potential legal contraints.
+  }
+}
+</code></pre>
+
+----
+###### Path (POST):
+/a/set_language
+
+###### Require login:
+Yes
+
+###### Parameters:
+language: string  // Such as "en", "us"
+
+###### Returns:
+<pre><code>
+{
+  "result": "SUCCESS" // Or "FAILURE", "NOT_SUPPORTED"
 }
 </code></pre>
 
@@ -67,10 +91,7 @@ password: string
 // Success
 {
   "result": "SUCCESS",
-  "user": {
-    "nickname": "Zero",
-    "email": "zero@gmail.com"
-  }
+  "user": UserObject, // See above for definition.
   "status": "OK",
 }
 
@@ -96,10 +117,7 @@ No params, check user session.
 <pre><code>
 // Logged in user:
 {
-  "user": {
-    "nickname": "Zero",
-    "email": "zero@gmail.com"
-  }
+  "user": UserObject, // See above for definition.
   "status": "OK"
 }
 
