@@ -1,6 +1,6 @@
 import 'dart:html';
 import 'package:web_ui/web_ui.dart';
-import 'lib/lib.dart';
+import 'gf2lib/gf2lib.dart';
 
 // initial value for click-counter
 int startingCount = 5;
