@@ -14,7 +14,7 @@
 
 
     <h1>{{Messages.get("TITLE")}}</h1>
-    <select bind-value="Messages.displayLanguage">
+    <select bind-value="Messages.displayLanguage" on-change="Messages.setLanguage()">
       <option value="en">English</option>
       <option value="ch">中文</option>
     </select>
