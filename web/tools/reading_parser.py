@@ -2,9 +2,11 @@ import os
 import glob
 import re
 import sys
+import json
 
 # exam folder
 _DEFAULT_EXAM_FOLDER = "../exams"
+_DEFAULT_OUTPUT_FOLDER = "../exams"
 
 _SPECIAL_ = {"\\uc0\\u9675": "",
              "\\uc0\\u9608": "<BLOCK>",
@@ -18,7 +20,7 @@ _SPECIAL_ = {"\\uc0\\u9675": "",
              "\\'97": "--"}
 
 
-class ParseReading:
+class ReadingParser:
     # filter some unnecessary chars and prepare for parsing
     def prepare(self, data):
         new_data = []
@@ -82,37 +84,39 @@ class ParseReading:
                 question_points.append(point)
                 questions.append(question)
                 question_to_paragraph.append(index)
-        self.genJson(title, paragraphs, questions, question_to_paragraph, question_points)
+        return self.genJson(title, paragraphs, questions, question_to_paragraph, question_points)
 
     # Generate json
     def genJson(self, title, paragraphs, questions, question_to_paragraph, question_points):
-        json = ""
-        json += "{\n"
-        json += "\t\"title\": \"%s\",\n" % title
-        json += "\t\"image\": \"\",\n"
-        json += "\t\"paragraphs\": [\n"
+        json_string = ""
+        json_string += "{\n"
+        json_string += "\t\"title\": \"%s\",\n" % title
+        json_string += "\t\"image\": \"\",\n"
+        json_string += "\t\"paragraphs\": [\n"
         for line in paragraphs:
-            json += "\t\t\"%s\",\n" % line
-        json += "\t],\n"
+            json_string += "\t\t\"%s\",\n" % line
+        json_string += "\t],\n"
 
-        json += "\t\"question\": [\n"
+        json_string += "\t\"question\": [\n"
         index = 0
         for line in questions:
-            json += "\t\t{\n"
-            json += "\t\t\t\"type\": \"\",\n"
-            json += "\t\t\t\"paragraph\": %d,\n" % question_to_paragraph[index]
-            json += "\t\t\t\"point\": %d,\n" % question_points[index]
-            json += "\t\t\t\"description\": \"%s\",\n" % line[0]
-            json += "\t\t\t\"option\": [\n"
+            json_string += "\t\t{\n"
+            json_string += "\t\t\t\"type\": \"\",\n"
+            json_string += "\t\t\t\"paragraph\": %d,\n" % question_to_paragraph[index]
+            json_string += "\t\t\t\"point\": %d,\n" % question_points[index]
+            json_string += "\t\t\t\"description\": \"%s\",\n" % line[0]
+            json_string += "\t\t\t\"option\": [\n"
             for i in range(1, len(line)):
-                json += "\t\t\t\t\"%s\",\n" % line[i]
-            json += "\t\t\t],\n"
-            json += "\t\t\t\"answer\" : 0,\n"
-            json += "\t\t},\n"
+                json_string += "\t\t\t\t\"%s\",\n" % line[i]
+            json_string += "\t\t\t],\n"
+            json_string += "\t\t\t\"answer\" : 0,\n"
+            json_string += "\t\t},\n"
             index += 1
-        json += "\t],\n"
-        json += "}"
-        print json
+        json_string += "\t],\n"
+        json_string += "}"
+        return json_string
+        # json_string = json_string.replace('\t', '').replace('\n', '')
+        # print json.dumps(json_string)
 
     def parse(self):
         os.chdir(_DEFAULT_EXAM_FOLDER)
@@ -120,12 +124,15 @@ class ParseReading:
         for filename in files:
             print "Open %s" % filename
             with open(filename) as file:
+                output_file = open(filename + ".json", "w")
                 data = file.readlines()
                 data = self.prepare(data)
 
                 exams = self.splitBy(data, "TPO")
                 for exam in exams:
-                    self.parseExam(exam)
+                    output = self.parseExam(exam)
+                    output_file.write(output)
+                output_file.close()
 
     def splitBy(self, data, regex):
         list = []
@@ -158,8 +165,9 @@ class ParseReading:
         if re.match("[0-9][0-9]?", parts[0]):
             return int(parts[0]), parts[1].strip()
 
+
 def main():
-    ParseReading().parse()
+    ReadingParser().parse()
 
 if __name__ == "__main__":
     sys.exit(main())
