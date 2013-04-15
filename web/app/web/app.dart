@@ -1,6 +1,6 @@
 import 'dart:html';
 import 'package:web_ui/web_ui.dart';
-import 'components/api/api.dart';
+import 'lib/lib.dart';
 
 // initial value for click-counter
 int startingCount = 5;
@@ -12,5 +12,4 @@ int startingCount = 5;
 void main() {
   // Enable this to use Shadow DOM in the browser.
   // useShadowDom = true;
-  // window.alert(UserManager.getUser().toString());
 }

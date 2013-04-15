@@ -86,7 +86,7 @@ class UserInfoHandler(BaseApiHandler):
         "user": {
           "nickname": "Zero",
           "email": "zero@gmail.com",
-          "language": "en",
+          "language": "ch",
           "country": "CN"
         }
       })
