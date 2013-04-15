@@ -10,7 +10,12 @@ class Messages {
   
   static final _MESSAGES = {
     "TITLE": {"en": "(GF)^2", "ch": "功夫2"},
-    "HELLO": {"en": "Hello to (GF)^2", "ch": "欢迎"}
+    "HELLO": {"en": "Hello to (GF)^2", "ch": "欢迎"},
+    "HOME": {"en": "Home", "ch": "首页"},
+    "ABOUT": {"en": "About", "ch": "关于"},
+    "CONTACT": {"en": "Contact", "ch": "联系方式"},
+    "SELECT_LANGUAGE": {"en": "Language", "ch": "语言"},
+    "LOGIN": {"en": "Login", "ch": "登陆"}
   };
   
   static getDisplayLang() {
