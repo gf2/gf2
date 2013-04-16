@@ -1,10 +1,4 @@
-library api;
-
-import 'dart:async';
-import 'dart:html';
-import 'dart:json';
-
-part 'user.dart';
+part of gf2lib;
 
 class UrlBuilder {
   String url = null;

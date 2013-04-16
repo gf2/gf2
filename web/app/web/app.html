@@ -12,11 +12,13 @@
   </head>
   <body>
 
-    
-    <h1>(GF)^2</h1>
-    
-    <p>Hello world from Dart!</p>
-    
+
+    <h1>{{Messages.get("TITLE")}}</h1>
+    <select bind-value="Messages.displayLanguage" on-change="Messages.setLanguage()">
+      <option value="en">English</option>
+      <option value="ch">中文</option>
+    </select>
+    {{Messages.get("HELLO")}}
     <div id="sample_container_id">
       <div is="gf2-login">
       </div>
