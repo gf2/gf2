@@ -38,6 +38,7 @@ class SignupPageHandler(BasePageHandler):
   def get(self):
     self.render('signup.html')
 
+# /a/signup
 class SignupHandler(BaseApiHandler):  
   def post(self):
     email = self.request.get('email')
@@ -68,9 +69,24 @@ class LogoutHandler(BasePageHandler):
   def get(self):
     pass
 
+# /a/check_email
 class CheckEmailHandler(BaseApiHandler):
   def get(self):
     self.reply(
       {
         "available": not email_exist(self.request.get('email'))
+      })
+
+# /a/get_user_info
+class UserInfoHandler(BaseApiHandler):
+  def get(self):
+    self.reply(
+      {
+        "status": "OK",
+        "user": {
+          "nickname": "Zero",
+          "email": "zero@gmail.com",
+          "language": "ch",
+          "country": "CN"
+        }
       })
