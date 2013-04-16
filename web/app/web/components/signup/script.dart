@@ -1,4 +1,4 @@
-import '../../gf2lib/gf2lib.dart';
+import 'package:app/gf2lib.dart';
 
 import 'dart:html';
 import 'package:web_ui/web_ui.dart';
