@@ -1,3 +1,5 @@
+import simplejson as json
+import sys
 from base_parser import BaseParser
 
 
@@ -43,31 +45,29 @@ class ReadingParser(BaseParser):
 
     # Generate json
     def genJson(self, title, paragraphs, questions, question_to_paragraph, question_points):
-        json_string = ""
-        json_string += "{\n"
-        json_string += "\t\"title\": \"%s\",\n" % title
-        json_string += "\t\"image\": \"\",\n"
-        json_string += "\t\"paragraphs\": [\n"
-        for line in paragraphs:
-            json_string += "\t\t\"%s\",\n" % line
-        json_string += "\t],\n"
-
-        json_string += "\t\"question\": [\n"
+        result = dict()
+        result["title"] = title
+        result["image"] = ""
+        result["paragraphs"] = paragraphs
+        question_list = []
         index = 0
         for line in questions:
-            json_string += "\t\t{\n"
-            json_string += "\t\t\t\"type\": \"\",\n"
-            json_string += "\t\t\t\"paragraph\": %d,\n" % question_to_paragraph[index]
-            json_string += "\t\t\t\"point\": %d,\n" % question_points[index]
-            json_string += "\t\t\t\"description\": \"%s\",\n" % line[0]
-            json_string += "\t\t\t\"option\": [\n"
-            for i in range(1, len(line)):
-                json_string += "\t\t\t\t\"%s\",\n" % line[i]
-            json_string += "\t\t\t],\n"
-            json_string += "\t\t\t\"answer\" : 0,\n"
-            json_string += "\t\t},\n"
-            index += 1
-        json_string += "\t],\n"
-        json_string += "}"
-        return json_string
-        # json_string = json_string.replace('\t', '').replace('\n', '')
+            question = dict()
+            question["type"] = ""
+            question["paragraph"] = question_to_paragraph[index]
+            question["point"] = question_points[index]
+            question["description"] = line[0]
+            question["option"] = line[1:]
+            question["answer"] = 0
+            question_list.append(question)
+        result["questions"] = question_list
+
+        print json.dumps(result, indent=4 * ' ')
+        return json.dumps(result, indent=4 * '')
+
+
+def main():
+    ReadingParser().parse("../exams", "reading")
+
+if __name__ == "__main__":
+    sys.exit(main())
