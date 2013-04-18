@@ -1,17 +1,23 @@
 from google.appengine.ext import db
 from models.users import User
 
+class Problem(db.Model):
+  pass
+
+class Answer(db.Model):
+  pass
+
 class ProblemSet(db.Model):
-  name = db.StringProperty(required = True)
-  is_free = db.BooleanProperty(required = True)
+  problemset_id = db.IntegerProperty()
+  name = db.StringProperty()
+  is_free = db.BooleanProperty()
+  desc = db.StringProperty()
 
 class ProblemSetTry(db.Model):
   user = db.ReferenceProperty(User)
   problemset = db.ReferenceProperty(ProblemSet)
   score = db.IntegerProperty()
-  answer = db.StringProperty()  # TODO: a json string?
+  answer = db.ReferenceProperty(Answer)
   start_time = db.DateTimeProperty()
   end_time = db.DateTimeProperty()
 
-class Problem(db.Model):
-  pass

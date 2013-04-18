@@ -12,15 +12,16 @@ import logging
 class AddProblemSetHandler(BaseApiHandler):
   def get(self):
     name = self.request.get('problemset_name')
-    if len(name) == 0 or get_problemset_by_name(name):
-      self.reply({"result": "ERROR (Empty or existence name)"})
+    pid = int(self.request.get('problemset_id', '0'))
+    if pid == 0 or get_problemset_by_id(pid):
+      self.reply({"result": "ERROR (Empty or existence id)"})
       return
-    ps = ProblemSet(name = name, is_free = True)
+    ps = ProblemSet(problemset_id = pid, name = name, is_free = True)
     ps.put()
     self.reply({"result": "SUCCESS"})
 
-def get_problemset_by_name(name):
-  res = ProblemSet.gql("WHERE name = :1", name)
+def get_problemset_by_id(pid):
+  res = ProblemSet.gql("WHERE problemset_id = :1", pid)
   if res.count():
     return res[0]
   return None
@@ -31,19 +32,11 @@ class TryProblemSetHandler(BaseApiHandler):
   def get(self):
     pst = ProblemSetTry()
     pst.user = get_current_session()['me']
-    name = self.request.get('problemset_name')
-    if len(name):
-      pst.problemset = get_problemset_by_name(name)
-      if not pst.problemset:
-        self.reply({"result": "name not found"})
-        return
-    else:
-      psid = self.request.get('problemset_id')
-      if len(psid):
-        pst.problemset = db.get(db.Key(psid))
-      else:
-        self.reply({"result": "parameter error"})
-        return
+    pid = int(self.request.get('problemset_id', '0'))
+    pst.problemset = get_problemset_by_id(pid)
+    if not pst.problemset:
+      self.reply({"result": "id not found"})
+      return
     pst.score = 60
     pst.start_time = datetime.datetime.now()
     pst.end_time = datetime.datetime.now()
@@ -71,6 +64,7 @@ class GetProblemSetsHandler(BaseApiHandler):
     for problem_set in problem_sets:
       logging.info(problem_set.key)
       results.append({
+        "problemset_id": problem_set.problemset_id,
         "name": problem_set.name,
         "is_free": problem_set.is_free,
         "has_completed": has_completed(

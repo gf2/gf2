@@ -70,7 +70,7 @@ class LogoutHandler(BaseApiHandler):
     session.terminate()
     self.reply({"result": "SUCCESS"})
 
-class GetUserInfoHandler(BasePageHandler):
+class GetUserInfoHandler(BaseApiHandler):
   def get(self):
     if session['me']:
       self.render_dict_as_json({
