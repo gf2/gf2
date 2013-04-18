@@ -1,5 +1,4 @@
 import simplejson as json
-import sys
 from base_parser import BaseParser
 
 
@@ -66,8 +65,3 @@ class ReadingParser(BaseParser):
         return json.dumps(result, indent=4 * '')
 
 
-def main():
-    ReadingParser().parse("../exams", "reading")
-
-if __name__ == "__main__":
-    sys.exit(main())
