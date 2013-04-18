@@ -7,4 +7,5 @@ class User(db.Model):
   created_time = db.DateTimeProperty(auto_now_add = True)
   password = db.StringProperty()
   status = db.IntegerProperty()   # User's payment status
+  paid_problemsets = db.ListProperty(db.Key)
 

@@ -18,6 +18,7 @@ import webapp2
 from handlers.audio import *
 from handlers.site import *
 from handlers.user import *
+from handlers.problem import *
 from configs import *
 
 app = webapp2.WSGIApplication([
@@ -26,8 +27,14 @@ app = webapp2.WSGIApplication([
     (uri_map['play_audio'], AudioPlayHandler),
     (uri_map['home_page'], HomePageHandler),
     (uri_map['login'], LoginHandler),
+    (uri_map['logout'], LogoutHandler),
     (uri_map['signup'], SignupHandler),
     (uri_map['signup_page'], SignupPageHandler),
     (uri_map['get_user_info'], UserInfoHandler),
     (uri_map['check_email'], CheckEmailHandler),
+    (uri_map['get_problemsets'], GetProblemSetsHandler),
+    # below urls are just for test
+    (r'/a/add_problemset', AddProblemSetHandler),
+    (r'/a/try_problemset', TryProblemSetHandler),
+    (r'/a/pay_problemset', PayProblemSetHandler),
 ], debug=True)
