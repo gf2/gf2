@@ -65,9 +65,26 @@ class SignupHandler(BaseApiHandler):
   def _result(self, res):
     self.reply({"result": res})
 
-class LogoutHandler(BasePageHandler):
+class LogoutHandler(BaseApiHandler):
   def get(self):
-    pass
+    session = get_current_session()
+    session.terminate()
+    self.reply({"result": "SUCCESS"})
+
+class GetUserInfoHandler(BaseApiHandler):
+  def get(self):
+    if session['me']:
+      self.render_dict_as_json({
+        "user": {
+          "nickname": session['me'].nickname,
+          "email": session['me'].email,
+        },
+        "status": "OK"
+      })
+    else:
+      self.render_dict_as_json({
+        "status": "LOGGED_OUT"
+      });
 
 # /a/check_email
 class CheckEmailHandler(BaseApiHandler):

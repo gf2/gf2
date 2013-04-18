@@ -14,9 +14,11 @@ uri_map = {
     "play_audio" : r'/play_audio/([^/]+)?',
     "home_page": r'/',
     "login": r'/a/login',
+    "logout": r'/a/logout',
     "signup": r'/a/signup',
     "get_user_info": r'/a/get_user_info',
     "signup_page": r'/p/signup',
     "check_email": r'/a/check_email',
+    "get_problemsets": r'/a/get_problemsets',
 }
 
