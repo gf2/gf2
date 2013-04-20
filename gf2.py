@@ -17,6 +17,7 @@ import os
 
 gf2config = {}
 args = None
+pages = ['app', 'test_problem_set']
 
 def clean():
   print('cleaning...')
@@ -30,9 +31,11 @@ def build():
   print('building...')
   os.chdir('web/app')
   _run_command('pub install')
-  _run_command('dart --package-root=packages/ packages/web_ui/dwc.dart --out web/out/ web/app.html')
+  for p in pages:
+    _run_command('dart --package-root=packages/ packages/web_ui/dwc.dart --out web/out/ web/%s.html' % p)
   os.chdir('web/out')
-  _run_command('dart2js app.html_bootstrap.dart -oapp.html_bootstrap.dart.js')
+  for p in pages:
+    _run_command('dart2js %s.html_bootstrap.dart -o%s.html_bootstrap.dart.js' % (p, p))
   os.chdir('../../../../')
   print('g2f built!')
 
