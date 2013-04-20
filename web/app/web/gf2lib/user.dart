@@ -1,8 +1,8 @@
-part of api;
+part of gf2lib;
 
 class UserManager {
   static final String LOCAL_STORAGE_KEY = 'user_info';
-  static var user = null;
+  static Map user = null;
   
   // Singleton style. Return user info as a Map. null for logged out user.
   static Map getUser() {

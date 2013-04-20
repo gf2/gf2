@@ -4,6 +4,7 @@ import json
 import logging
 import os
 import webapp2
+from gaesessions import get_current_session
 
 jinja_environment = jinja2.Environment(
     loader = jinja2.FileSystemLoader(os.path.dirname(__file__))
@@ -30,3 +31,15 @@ class BaseApiHandler(webapp2.RequestHandler):
   # alias
   def reply(self, json_dict):
     self.render_dict_as_json(json_dict)
+
+def require_login(url):
+  def login_check(fn):
+    def Get(self, *args):
+      if not get_current_session().has_key('me'):
+        self.redirect(url)
+        return
+      else:
+        fn(self, *args)
+    return Get
+  return login_check
+
