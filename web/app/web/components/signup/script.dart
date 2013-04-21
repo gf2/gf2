@@ -62,9 +62,19 @@ class SignupComponent extends WebComponent {
     waiting.hidden = true;
     success = this._root.query("#success");
     success.hidden = true;
+    
+    signupEmail.onKeyDown.listen(handleKeydown);
+    signupPassword.onKeyDown.listen(handleKeydown);
+    signupPasswordRep.onKeyDown.listen(handleKeydown);
   }
   
-  validateEmailHandler(errMsg) {
+  handleKeydown(KeyboardEvent e) {
+    if (e.keyCode == KeyCode.ENTER) {
+      signup();
+    }
+  }
+  
+  handleEmailValidation(errMsg) {
     if (errMsg != null) {
       emailErr(errMsg);
     } else {
@@ -88,7 +98,8 @@ class SignupComponent extends WebComponent {
     passwordGroup.classes.remove('success');
   }
   
-  signupResultHandler(result) {
+
+  handleSignupResult(result) {
     waiting.hidden = true;
     if (result == "EMAIL_USED") {
       emailErr(Messages.get("EMAIL_TAKEN"));
@@ -106,16 +117,20 @@ class SignupComponent extends WebComponent {
     }
   }
   
+  signup() {
+    waiting.hidden = false;
+    UserManager.signup(
+        signupEmail.value,
+        signupNickname.value,
+        signupPassword.value).then(handleSignupResult);
+  }
+  
   onSignupClick(MouseEvent event) {
-     waiting.hidden = false;
-     UserManager.signup(
-         signupEmail.value,
-         signupNickname.value,
-         signupPassword.value).then(signupResultHandler);
+    signup();
   }
   
   onEmailChange(Event event) {
     String email = signupEmail.value;
-    new EmailChecker(email).check().then(validateEmailHandler);
+    new EmailChecker(email).check().then(handleEmailValidation);
   }
 }

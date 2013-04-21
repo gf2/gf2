@@ -11,7 +11,6 @@ class HomePageHandler(BasePageHandler):
     def get(self):
         session = get_current_session()
         if session.has_key('me'):
-          user_name = session['me'].nickname
+          self.redirect('/app.html')
         else:
-          user_name = 'guest'
-        self.render('home.html', {'cur_user': user_name} )
+          self.redirect('/welcome.html')

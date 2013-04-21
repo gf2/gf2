@@ -27,9 +27,18 @@ class LoginComponent extends WebComponent {
     waiting.hidden = true;
     success = this._root.query("#success");
     success.hidden = true;
+    
+    loginPassword.onKeyDown.listen(handleKeydown);
+    loginEmail.onKeyDown.listen(handleKeydown);
   }
   
-  loginResultHandler(result) {
+  handleKeydown(KeyboardEvent e) {
+    if (e.keyCode == KeyCode.ENTER) {
+      login();
+    }
+  }
+  
+  handleLoginResult(result) {
     waiting.hidden = true;
     if (result == "SUCCESS") {
       success.hidden = false;
@@ -48,10 +57,14 @@ class LoginComponent extends WebComponent {
     }
   }
   
+  login() {
+    waiting.hidden = false;
+    UserManager.login(
+        loginEmail.value,
+        loginPassword.value).then(handleLoginResult);
+  }
+  
   onLoginClick(MouseEvent event) {
-     waiting.hidden = false;
-     UserManager.login(
-         loginEmail.value,
-         loginPassword.value).then(loginResultHandler);
+     login();
   }
 }

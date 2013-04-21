@@ -37,10 +37,10 @@ class WelcomePage extends WebComponent {
       loginDiv.hidden = false;
     });
     
-    document.onKeyDown.listen(documentKeydown);
+    document.onKeyDown.listen(handleKeydown);
   }
   
-  documentKeydown(KeyboardEvent e) {
+  handleKeydown(KeyboardEvent e) {
     if (e.keyCode == KeyCode.ESC) {
       signupDiv.hidden = true;
       loginDiv.hidden = true;
