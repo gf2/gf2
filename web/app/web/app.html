@@ -7,12 +7,13 @@
     <link rel="stylesheet" href="app.css">
     <link rel="stylesheet" href="static/bootstrap/css/bootstrap.min.css">
     
-    <link rel="components" href="components/login/template.html">
     <link rel="components" href="components/signup/template.html">
+    <link rel="components" href="components/navbar/template.html">
   </head>
   <body>
-
-
+    <div is="gf2-navbar" id="AA">
+    </div>
+    
     <h1>{{Messages.get("TITLE")}}</h1>
     <select bind-value="Messages.displayLanguage" on-change="Messages.setLanguage()">
       <option value="en">English</option>
@@ -20,11 +21,8 @@
     </select>
     {{Messages.get("HELLO")}}
     <div id="sample_container_id">
-      <div is="gf2-login">
-      </div>
       <div is="gf2-signup">
-      </div> 
-    
+      </div>
     </div>
 
     <script type="application/dart" src="app.dart"></script>

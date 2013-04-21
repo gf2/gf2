@@ -14,6 +14,7 @@ import argparse
 import subprocess
 import shutil
 import os
+import re
 
 gf2config = {}
 args = None
@@ -25,14 +26,26 @@ def clean():
   _rm_if_exist('web/app/pubspec.lock')
   print('cleaned up!');
 
+def parse_pages(file):
+  pages = []
+  with open(file) as f:
+    for line in f:
+      m = re.search('/(.*)\.html', line)
+      if m:
+        pages.append(m.group(1))
+  return pages
+
 def build():
   clean()
   print('building...')
   os.chdir('web/app')
   _run_command('pub install')
-  _run_command('dart --package-root=packages/ packages/web_ui/dwc.dart --out web/out/ web/app.html')
+  _run_command('dart build.dart')
+  pages = parse_pages('build.dart')
   os.chdir('web/out')
-  _run_command('dart2js app.html_bootstrap.dart -oapp.html_bootstrap.dart.js')
+  print('running dart2js for pages: %s' % pages)
+  for p in pages:
+    _run_command('dart2js %s.html_bootstrap.dart -o%s.html_bootstrap.dart.js' % (p, p))
   os.chdir('../../../../')
   print('g2f built!')
 
