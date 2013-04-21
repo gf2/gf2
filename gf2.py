@@ -17,7 +17,7 @@ import os
 
 gf2config = {}
 args = None
-pages = ['app', 'test_problem_set']
+pages = ['app', 'welcome']
 
 def clean():
   print('cleaning...')
@@ -31,6 +31,7 @@ def build():
   print('building...')
   os.chdir('web/app')
   _run_command('pub install')
+  #_run_command('dart build.dart')
   for p in pages:
     _run_command('dart --package-root=packages/ packages/web_ui/dwc.dart --out web/out/ web/%s.html' % p)
   os.chdir('web/out')
