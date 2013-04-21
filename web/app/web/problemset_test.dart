@@ -5,7 +5,7 @@ import 'package:unittest/unittest.dart';
 // TODO(Nicholas Zhao): Try to move all test to on directory.
 // TODO(Nicholas Zhao): Run test in command line.   
 void main() {
-  new Timer(new Duration(seconds:2), () => startTest());
+  //new Timer(new Duration(seconds:2), () => startTest());
 }
 
 void startTest() {
