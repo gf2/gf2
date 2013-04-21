@@ -7,6 +7,7 @@
 
 // Reading section object
 {
+  "type": "reading",
   // Title of the passage.
   "title": "Seventeenth-Century European Economic Growth",
 
@@ -96,7 +97,8 @@
 
 // Listening section object
 {
-
+  "type": Listeing,
+  
   // background image for the listening.
   "image": "/static/img/xxx.jpg",
 
@@ -187,6 +189,7 @@
 // Speaking section object
 // Every question of the 6 is different, so define a schema for each one.
 {
+  "type": "speaking",
   
   "questions": [
     // Q-1. Talk about a familiar topic
@@ -271,6 +274,8 @@
 
 // Writing section object
 {
+  "type": "writing",
+  
   "questions": [
     {
       "topic": "A long paragraph about a topic..",
