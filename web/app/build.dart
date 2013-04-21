@@ -4,8 +4,9 @@ import 'package:web_ui/component_build.dart';
 // Ref: http://www.dartlang.org/articles/dart-web-components/tools.html
 main() {
   Options option = new Options();
+  print(option.arguments);
   build(new Options().arguments, [
       'web/app.html',
-      'web/test_problem_set.html'
+      'web/problemset_test.html',
       ]);
 }
