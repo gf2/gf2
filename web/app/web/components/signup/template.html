@@ -2,6 +2,7 @@
   <body>
     <element name="gf2-signup" constructor="SignupComponent" extends="div">
       <template>
+        <h3 class='muted'>{{Messages.get("CREATE_ACCOUNT")}}</h3>
         <div class="control-group" id="email-group">
           <input type="text" name="email" id="signup-email" on-blur="onEmailChange($event)" placeholder="{{Messages.get('EMAIL')}}">
           <br/>
@@ -20,7 +21,7 @@
           <br/>
           <span class="control-label" id="errmsg-password-rep" for="signup-password-rep"></span>
         </div>
-        <button on-click="onSignupClick($event)" id="signup-submit" class="btn btn-large btn-primary">Signup</button>
+        <button on-click="onSignupClick($event)" id="signup-submit" class="btn btn-large btn-primary">{{Messages.get("SIGNUP")}}</button>
         <img src="/static/img/waiting.gif" id="waiting" width='32px' height='32px'/>
         <img src="/static/img/success-icon.png" id="success" width='32px' height='32px'/>
       </template>

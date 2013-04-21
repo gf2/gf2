@@ -7,19 +7,19 @@ import re
 import logging
 from models.users import User
 
-class LoginHandler(BasePageHandler):
+class LoginHandler(BaseApiHandler):
   def get(self):
     self.render('login.html')
   def post(self):
     users = User.gql("WHERE email=:1", self.request.get('email'))
     if users.count() == 0 or \
       users[0].password != hashlib.sha1(self.request.get('password')).hexdigest():
-      self.response.out.write('Login failed.')
+      self.reply({"result": "FAILURE"})
     else:
       # add session    
       session = get_current_session()
-      session['me'] = users[0]    
-      self.response.out.write('Login successfully.')
+      session['me'] = users[0]
+      self.reply({"result": "SUCCESS"})
 
 def email_exist(email):
   return User.gql("WHERE email=:1", email).get() is not None
