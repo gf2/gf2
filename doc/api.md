@@ -179,3 +179,47 @@ limit: Optional, default 10, num of tests to return.
   "status": "OK",
 }
 </code></pre>
+
+----
+###### Path (POST):
+/a/send_reset_password_email
+
+
+###### Description:
+Request to reset password, send an email with a key.
+
+
+###### Require login:
+No
+
+###### Parameters:
+email: Required
+
+
+###### Returns:
+<pre><code>
+{
+  "result": "SUCCESS", // or "EMAIL_NOT_EXIST"
+}
+</code></pre>
+
+----
+###### Path (POST):
+/a/reset_password
+
+###### Require login:
+No
+
+###### Parameters:
+email: Required
+
+password: Required
+
+key: Required
+
+###### Returns:
+<pre><code>
+{
+  "result": "SUCCESS", // or "FAILURE"
+}
+</code></pre>
