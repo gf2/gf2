@@ -35,3 +35,6 @@ nosetests.xml
 
 # gf2 config
 .gf2
+
+# vim tmp
+*.swp

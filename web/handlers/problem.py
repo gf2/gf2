@@ -52,6 +52,34 @@ def has_completed(user_key, problemset_key):
   res = ProblemSetTry.gql("WHERE user = :1 AND problemset = :2", user_key, problemset_key)
   return res.count() > 0
 
+class GetSectionHandler(BaseApiHandler):
+  def get(self):
+    response = {
+        "type": "reading",
+        "title": "This is reading title",
+        "image": "/static/img/xxx.jpb",
+        "paragraphs": [
+          "First paragraph",
+          "Second paragraph",
+          "Third paragraph"
+        ],
+        "question": [
+          {
+            "type": "multichoice",
+            "paragrapha": 0,
+            "points": 1,
+            "options": [
+              "option 1",
+              "option 2",
+              "option 2"
+            ],
+            "answer" : 0,
+          }
+        ]
+    }
+    self.reply(response)
+
+
 class GetProblemSetsHandler(BaseApiHandler):
   @require_login('/a/login')
   def get(self):
