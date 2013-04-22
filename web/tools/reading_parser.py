@@ -15,8 +15,8 @@ class ReadingParser(BaseParser):
             if data[index].startswith("Paragraph 1:"):
                 break
             paragraphs.append(data[index])
-        parts = self.splitBy(data[index:], r"Paragraph .*")
 
+        parts = self.splitBy(data[index:], r"Paragraph .*")
         index = 0
         for part in parts:
             i = 0
@@ -45,6 +45,7 @@ class ReadingParser(BaseParser):
     # Generate json
     def genJson(self, title, paragraphs, questions, question_to_paragraph, question_points):
         result = dict()
+        result["type"] = "reading"
         result["title"] = title
         result["image"] = ""
         result["paragraphs"] = paragraphs
@@ -61,7 +62,6 @@ class ReadingParser(BaseParser):
             question_list.append(question)
         result["questions"] = question_list
 
-        print json.dumps(result, indent=4 * ' ')
-        return json.dumps(result, indent=4 * '')
+        return json.dumps(result, indent=2 * ' ')
 
 

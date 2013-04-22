@@ -6,6 +6,7 @@ class ListeningParser(BaseParser):
     def parseExam(self, exam):
         questions = self.splitBy(exam, r"[0-9][0-9]?\..*")
         result = dict()
+        result["type"] = "listening"
         result["image"] = "xxx.jpg"
         result["audio"] = "yyy"
         result["section"] = questions[0][0] + " " + questions[0][1]
@@ -22,12 +23,5 @@ class ListeningParser(BaseParser):
             question_list.append(question_dict)
         result["questions"] = question_list
 
-        print json.dumps(result, indent=4 * ' ')
-
-    def isClassify(self, question):
-        return False
-
-    def isOrdering(self, question):
-        return False
-
+        return json.dumps(result, indent=2 * ' ')
 
