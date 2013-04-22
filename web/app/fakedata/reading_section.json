@@ -1,0 +1,23 @@
+{
+question: [
+{
+answer: 0,
+points: 1,
+type: "multichoice",
+paragrapha: 0,
+options: [
+"option 1",
+"option 2",
+"option 2"
+]
+}
+],
+image: "/static/img/xxx.jpb",
+paragraphs: [
+"First paragraph",
+"Second paragraph",
+"Third paragraph"
+],
+type: "reading",
+title: "This is reading title"
+}

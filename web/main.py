@@ -33,6 +33,7 @@ app = webapp2.WSGIApplication([
     (uri_map['get_user_info'], UserInfoHandler),
     (uri_map['check_email'], CheckEmailHandler),
     (uri_map['get_problemsets'], GetProblemSetsHandler),
+    (uri_map['get_section'], GetSectionHandler),
     # below urls are just for test
     (r'/a/add_problemset', AddProblemSetHandler),
     (r'/a/try_problemset', TryProblemSetHandler),
