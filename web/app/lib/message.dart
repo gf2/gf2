@@ -17,7 +17,7 @@ class Messages {
     "SELECT_LANGUAGE": {"en": "Language", "ch": "语言"},
     "LOGIN": {"en": "Login", "ch": "登陆"},
     "SIGNUP": {"en": "Sign up", "ch": "注册"},
-    "SIGNUP_NOW": {"en": "Sign up today", "ch": "立即注册"},
+    "SIGNUP_NOW": {"en": "Sign up for free", "ch": "免费注册"},
     "EMAIL": {"en": "Email Address", "ch": "电子邮箱"},
     
     // Signup page
@@ -29,9 +29,12 @@ class Messages {
     "PASSWORD_MOT_MATCH": {"en": "Passwords don't match", "ch": "密码不一致"},
     "EMAIL_INVALID": {"en": "Invalid email address", "ch": "邮箱地址有误"},
     "EMAIL_TAKEN": {"en": "The Email address has been taken", "ch": "该邮箱已被使用"},
+    "LOGIN_HINT": {"en": "Have an account? Login now >>", "ch": "已有账号？立即登录》"},
     
     // Login
-    "LOGIN_FAILURE_MSG": {"en": "The username or password you entered is incorrect", "ch": "用户名或密码错误"}
+    "LOGIN_FAILURE_MSG": {"en": "The username or password you entered is incorrect", "ch": "用户名或密码错误"},
+    "SIGNUP_HINT": {"en": "Have no account? Sign up for free >>", "ch": "没有账号？免费注册》"},
+    "FIND_PASSWORD": {"en": "Password", "ch": "找回密码"}
   };
   
   static getDisplayLang() {
