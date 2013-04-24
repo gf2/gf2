@@ -7,6 +7,7 @@ main() {
   build(new Options().arguments, [
       'web/app.html',
       'web/welcome.html',
-      'web/problemset_test.html',
+      'web/test/problemset_test.html',
+      "web/test/models_test.html",
       ]);
 }
