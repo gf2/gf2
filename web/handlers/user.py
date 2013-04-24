@@ -133,7 +133,7 @@ class SendResetPasswordEmailHandler(BaseApiHandler):
     key = gen_random_key(20)
     # TODO: sender and body to be determined
     mail.send_mail(
-      sender = "support@gf2.appspotmail.com",
+      sender = "roba269@gmail.com",
       to = email,
       subject = "Password reset",
       body = """
