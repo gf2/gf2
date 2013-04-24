@@ -20,5 +20,8 @@ uri_map = {
     "signup_page": r'/p/signup',
     "check_email": r'/a/check_email',
     "get_problemsets": r'/a/get_problemsets',
+    "get_section": r'/a/get_section',
+    "send_reset_password_email": r'/a/send_reset_password_email',
+    "reset_password": r'/a/reset_password',
 }
 
