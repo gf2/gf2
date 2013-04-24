@@ -25,7 +25,18 @@ class UserManager {
   }
 
   static login(email, password) {
-    
+    return BaseJsonApi.post(
+        '/a/login', {"email":email, "password": password}).then(
+            (response) => response["result"]);
+  }
+  
+  static logout() {
+    user = null;
+    window.localStorage.clear();
+    BaseJsonApi.get('/a/logout').then((res) {
+      print("LOGOUT: " + res['result']);
+      window.location.href = '/';
+    });
   }
   
   static signup(email, nickname, password) {
@@ -45,12 +56,15 @@ class EmailChecker {
     this.email = email;
   }
   
+  // Return errMsg if not passed. Return null if passed.
   Future<bool> check() {
     if (!EMAIL_REGEX.hasMatch(email)) {
-      return new Future.of(() => false);
+      return new Future.value(Messages.get("EMAIL_INVALID"));
     } else {
       return BaseJsonApi.get('/a/check_email?email=' + email).then(
-          (response) => response["available"]);
+          (response) {
+           return response["available"] == true ? null : Messages.get("EMAIL_TAKEN");
+          });
     }
   }
 }

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+  <body>
+    <element name="gf2-login" constructor="LoginComponent" extends="div">
+      <template>
+        <h3 class='muted'>{{Messages.get("LOGIN")}}</h3>
+        <div class="control-group" id="email-group">
+          <input type="text" name="email" id="login-email" placeholder="{{Messages.get('EMAIL')}}">
+          <br/>
+        </div>
+
+        <div class="control-group" id="password-group">
+          <input type="password" name="password" id="login-password" placeholder="{{Messages.get('PASSWORD')}}">
+          <br/>
+          <span class="control-label" id="errmsg" for="login-password"></span>
+        </div>
+
+        <button on-click="onLoginClick($event)" id="submit" class="btn btn-large btn-primary">{{Messages.get("LOGIN")}}</button>
+        <img src="/static/img/waiting.gif" id="waiting" width='32px' height='32px'/>
+        <img src="/static/img/success-icon.png" id="success" width='32px' height='32px'/>
+        <br/>
+        <button type="button" class="btn btn-link" style="margin-top:8px">{{Messages.get("SIGNUP_HINT")}}</button>
+      </template>
+      
+      <script type="application/dart" src="script.dart"></script>
+    </element>
+  </body>

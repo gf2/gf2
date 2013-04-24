@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <title>template</title>
+    <link rel="components" href="../signup/template.html">
+    <link rel="components" href="../login/template.html">
+    
+  </head>
+ 
+  <body>   
+    <element extends="div" name="gf2-welcome-page" constructor="WelcomePage">
+      <template>
+    <div class="container-narrow">
+
+      <div class="masthead">
+        <ul class="nav nav-pills pull-right">
+          <li><a id="login-btn" href="#">{{Messages.get("LOGIN")}}</a></li>
+        </ul>
+        <h3 class="muted">(GF)2</h3>
+      </div>
+
+
+      <hr>
+
+      <div class="jumbotron">
+        <h1>Super awesome English practice!</h1>
+        <p class="lead">Cras justo odio, dapibus ac facilisis in, egestas eget quam. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
+        <a id="signup-btn" class="btn btn-large btn-success" href="#">{{Messages.get("SIGNUP_NOW")}}</a>
+      </div>
+
+      <hr>
+
+      <div class="row-fluid marketing">
+        <div class="span6">
+          <h4>Subheading</h4>
+          <p>Donec id elit non mi porta gravida at eget metus. Maecenas faucibus mollis interdum.</p>
+
+          <h4>Subheading</h4>
+          <p>Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Cras mattis consectetur purus sit amet fermentum.</p>
+
+          <h4>Subheading</h4>
+          <p>Maecenas sed diam eget risus varius blandit sit amet non magna.</p>
+        </div>
+
+        <div class="span6">
+          <h4>Subheading</h4>
+          <p>Donec id elit non mi porta gravida at eget metus. Maecenas faucibus mollis interdum.</p>
+
+          <h4>Subheading</h4>
+          <p>Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Cras mattis consectetur purus sit amet fermentum.</p>
+
+          <h4>Subheading</h4>
+          <p>Maecenas sed diam eget risus varius blandit sit amet non magna.</p>
+        </div>
+      </div>
+      <hr>
+      <div class="footer">
+        <p>GF2 2013</p>
+      </div>
+    </div>
+    <div id="gf2-signup" class="signup-background">
+      <div is="gf2-signup" class="signup-form">
+      </div>
+    </div>
+    <div id="gf2-login" class="signup-background">
+      <div is="gf2-login" class="signup-form">
+      </div>
+    </div>
+    </template>
+    <script type="application/dart" src="script.dart"></script>
+    <script src="packages/browser/dart.js"></script>
+    </element>
+  </body>
+</html>

@@ -38,6 +38,7 @@ class UrlBuilder {
 
 class BaseApi {
   static String getNow(String url, [Map params = null]) {
+    //return '{"user":{"email":"a@b.com","nickname":"zero"}}'; // TODO
     if (params != null) {
       url = new UrlBuilder(url, params).get();
     }
@@ -55,6 +56,7 @@ class BaseApi {
   }
   
   static Future<String> post(url, [Map params= null]) {
+    // return new Future.sync(() => '{"result":"FAILURE"}'); // TODO
     return HttpRequest.request(
         new UrlBuilder(url, params).get(),
         method: "POST"
@@ -72,6 +74,7 @@ class BaseJsonApi extends BaseApi {
   }
   
   static Future<Map> post(String url, [Map params = null]) {
+    // return new Future.sync(() => "STUB"); // TODO
     return BaseApi.post(url, params).then((response) => parse(response));
   }
 }
