@@ -6,26 +6,15 @@
     <title>Sample app</title>
     <link rel="stylesheet" href="app.css">
     <link rel="stylesheet" href="static/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="static/bootstrap/css/bootstrap-responsive.min.css">
     
-    <link rel="components" href="packages/app/components/signup/template.html">
-    <link rel="components" href="packages/app/components/navbar/template.html">
+    <link rel="components" href="packages/app/components/home_page/template.html">
   </head>
   <body>
-    <div is="gf2-navbar" id="AA">
+    <div is="gf2-home-page">
     </div>
-    
-    <h1>{{Messages.get("TITLE")}}</h1>
-    <select bind-value="Messages.displayLanguage" on-change="Messages.setLanguage()">
-      <option value="en">English</option>
-      <option value="ch">中文</option>
-    </select>
-    {{Messages.get("HELLO")}}
-    <div id="sample_container_id">
-      <div is="gf2-signup">
-      </div>
-    </div>
-
     <script type="application/dart" src="app.dart"></script>
+    <script src="static/bootstrap/js/bootstrap.min.js">
     <script src="packages/browser/dart.js"></script>
   </body>
 </html>
