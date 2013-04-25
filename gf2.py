@@ -3,9 +3,11 @@
 '''
 Gf2 tools.
 Example:
-  python gf2.py clean: clean up all generated folders and files.
-  python gf2.py build: Compile js and css files.
-  python gf2.py deploy --instance=[prod|dev]: Deploy the application.
+  python gf2.py clean  # Clean up all generated folders and files.
+  python gf2.py build  # Compile js and css files.
+  python gf2.py deploy --instance=[local|prod|dev]  # Deploy the application.
+  python gf2.py deploy --instance local --nopub true  # Start local server, skip pub install.
+  python gf2.py deploy --instance local --page app  # Only compile app.html, build faster. 
 
 This scrip requires a config file at same directory '.gf2'. See commends on '.gf2-example'.
 '''
