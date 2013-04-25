@@ -21,7 +21,8 @@ args = None
 
 def clean():
   print('cleaning...')
-  _rm_if_exist('web/app/packages')
+  if not args.nopub:
+    _rm_if_exist('web/app/packages')
   _rm_if_exist('web/app/web/out')
   _rm_if_exist('web/app/web/test/out')
   _rm_if_exist('web/app/pubspec.lock')
@@ -40,9 +41,12 @@ def build():
   clean()
   print('building...')
   os.chdir('web/app')
-  _run_command('pub install')
+  if not args.nopub:
+    _run_command('pub install')
   _run_command('dart build.dart')
   pages = parse_pages('build.dart')
+  if args.page:
+    pages = [p for p in pages if p[1] == args.page]
   print('running dart2js for pages: %s' % pages)
   for dir, p in pages:
     _run_command('dart2js %s/out/%s.html_bootstrap.dart -o%s/out/%s.html_bootstrap.dart.js' % (dir, p, dir, p))
@@ -110,6 +114,8 @@ if __name__ == '__main__':
   parser = argparse.ArgumentParser(description='gf2 tools.')
   parser.add_argument('action', help = 'clean, build, deploy', choices = ['clean', 'build', 'deploy'])
   parser.add_argument('--instance', help = 'Specify the instance you wanna deply to. Instance name is defined in .gf2', choices = ['dev', 'prod', 'local'])
+  parser.add_argument('--page', help = 'Specify the page to build')
+  parser.add_argument('--nopub', help = 'Skip pub install')
 
   args = parser.parse_args()
   actions_map[args.action]()

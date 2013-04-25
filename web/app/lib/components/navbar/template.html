@@ -31,14 +31,8 @@
                     </ul>
                   </li>
                 </ul>
-                <div id="login-form">
-                  <form class="navbar-form pull-right">
-                    <input class="span2" type="text" placeholder="Email">
-                    <input class="span2" type="password" placeholder="Password">
-                    <button on-click="onLoginClick($event)" type="submit" class="btn">Login</button>
-                  </form>
-                </div>
                 <div id="user-panel">
+                  <span>{{UserManager.getUser()['email']}}</span>
                   <button on-click="onLogoutClick($event)" type="submit" class="btn">Logout</button>
                 </div>
               </div><!--/.nav-collapse -->
