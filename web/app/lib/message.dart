@@ -16,9 +16,15 @@ class Messages {
     "CONTACT": {"en": "Contact", "ch": "联系方式"},
     "SELECT_LANGUAGE": {"en": "Language", "ch": "语言"},
     "LOGIN": {"en": "Login", "ch": "登陆"},
+    "LOGOUT": {"en": "Logout", "ch": "登出"},
     "SIGNUP": {"en": "Sign up", "ch": "注册"},
     "SIGNUP_NOW": {"en": "Sign up for free", "ch": "免费注册"},
     "EMAIL": {"en": "Email Address", "ch": "电子邮箱"},
+    "LANGUAGE_CHINESE": {"en": "Chinese", "ch": "中文"},
+    
+    "HOME_PAGE_TITLE": {"en": "Free TOEFL Practice Online", "ch": "托福在线全真模考"},
+    "TEST_MODE": {"en": "Online Test", "ch": "全真模考"},
+    "PRACTICE_MODE": {"en": "Free Practice", "ch": "在线练习"},
     
     // Signup page
     "CREATE_ACCOUNT": {"en": "Create a new account", "ch": "注册新账号"},
@@ -56,11 +62,12 @@ class Messages {
     return displayLanguage;
   }
   
-  static setLanguage() {
+  static setLanguage(lang) {
+    displayLanguage = lang;
     window.localStorage[LOCAL_STORAGE_DISPLAY_LANGUAGE] = displayLanguage;
+    watchers.dispatch();
   }
   
-  // Binds with UI.
   static String displayLanguage = '';
   
   static String LOCAL_STORAGE_DISPLAY_LANGUAGE = "DISPLAY_LANGUAGE";
