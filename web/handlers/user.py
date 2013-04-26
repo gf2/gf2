@@ -1,3 +1,4 @@
+from google.appengine.api import mail
 from handlers import BasePageHandler
 from handlers import BaseApiHandler
 from gaesessions import get_current_session
@@ -5,6 +6,9 @@ import webapp2
 import hashlib
 import re
 import logging
+import random
+import string
+from datetime import datetime, timedelta
 from models.users import User
 
 class LoginHandler(BaseApiHandler):
@@ -24,6 +28,9 @@ class LoginHandler(BaseApiHandler):
 def email_exist(email):
   return User.gql("WHERE email=:1", email).get() is not None
 
+def get_user_by_email(email):
+  return User.gql("WHERE email=:1", email).get() 
+  
 EMAIL_REGEX = re.compile(r"[A-Za-z0-9._%-]+@[A-Za-z0-9.-]+.[A-Za-z]{2,4}")
 
 def is_valid_email(email):
@@ -107,3 +114,55 @@ class UserInfoHandler(BaseApiHandler):
           "country": "CN"
         }
       })
+
+def gen_random_key(n):
+  return ''.join(random.choice(
+    string.ascii_letters + string.digits) for x in range(n))
+
+# /a/send_reset_password_email
+class SendResetPasswordEmailHandler(BaseApiHandler):
+  def get(self):
+    # TODO: just for simplify the testing, should be removed in prod 
+    self.post()
+  def post(self):
+    email = self.request.get('email')
+    user = get_user_by_email(email)
+    if user is None:
+      self.reply({"result": "EMAIL_NOT_EXIST"})
+      return
+    key = gen_random_key(20)
+    # TODO: sender and body to be determined
+    mail.send_mail(
+      sender = "roba269@gmail.com",
+      to = email,
+      subject = "Password reset",
+      body = """
+        The key for resetting you password: %s
+      """ % key)
+    user.pwd_reset_key_hashed = hashlib.sha1(key).hexdigest()
+    user.pwd_reset_timeout = datetime.now() + timedelta(hours=12)
+    user.put()
+    self.reply({"result": "SUCCESS"})
+
+# /a/reset_password
+class ResetPasswordHandler(BaseApiHandler):
+  def get(self):
+    # TODO: just for simplify the testing, should be removed in prod 
+    self.post()
+  def post(self):
+    user = get_user_by_email(self.request.get("email"))
+    if user is None:
+      self.reply({"result": "FAILURE"})
+      return
+    hashed_key = hashlib.sha1(self.request.get('key')).hexdigest()
+    if hashed_key != user.pwd_reset_key_hashed or \
+        datetime.now() > user.pwd_reset_timeout:
+      self.reply({"result": "FAILURE"})
+      return
+    new_pwd = hashlib.sha1(self.request.get('password')).hexdigest()
+    user.password = new_pwd
+    user.pwd_reset_key_hashed = None
+    user.pwd_reset_timeout = None
+    user.put()
+    self.reply({"result": "SUCCESS"})
+
