@@ -114,19 +114,22 @@ actions_map = {'clean': clean,
 
 
 if __name__ == '__main__':
-  _load_gf2config()
   parser = argparse.ArgumentParser(description='gf2 tools.')
   parser.add_argument('action', help = 'clean, build, deploy, test', choices = ['clean', 'build', 'deploy', 'test'])
   parser.add_argument('--instance', help = 'Specify the instance you wanna deply to. Instance name is defined in .gf2', choices = ['dev', 'prod', 'local'])
   parser.add_argument('--page', help = 'Specify the page to build')
   parser.add_argument('--nopub', help = 'Skip pub install')
   parser.add_argument('--target', help = 'frontend | server')
+  parser.add_argument('--droneio', help = 'specify this argument to tell that this is running on drone.io')
   args = parser.parse_args()
   
+  if not args.droneio:
+    # TODO(Nichooas): create a specific config file for drone.io.
+    _load_gf2config()
   assert _check_tool('pub'), 'hey, pub not found, add dart SDK into your $PATH'
   assert _check_tool('dart2js'), 'hey, dart2js not found, add dart SDK into your $PATH'
   assert _check_tool('dart'), 'hey, dart not found, add dart SDK into your $PATH'
-  if args.action == 'test' and args.target == 'frontend':
+  if not args.droneio:
     assert _check_tool('appcfg.py'), 'hey, add GAE python SDK into you $PATH'
 
   actions_map[args.action]()
