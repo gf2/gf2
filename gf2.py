@@ -117,7 +117,7 @@ if __name__ == '__main__':
   assert _check_tool('pub'), 'hey, pub not found, add dart SDK into your $PATH'
   assert _check_tool('dart2js'), 'hey, dart2js not found, add dart SDK into your $PATH'
   assert _check_tool('dart'), 'hey, dart not found, add dart SDK into your $PATH'
-  if not os.environ['drone.io']:
+  if not os.environ.get('drone.io'):
     assert _check_tool('appcfg.py'), 'hey, add GAE python SDK into you $PATH'
   _load_gf2config()
   parser = argparse.ArgumentParser(description='gf2 tools.')
