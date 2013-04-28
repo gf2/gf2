@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <link rel="components" href="problemset_row.html">
+  </head>
+ 
+  <body>   
+    <element extends="div" name="gf2-problemset-list" constructor="ProblemsetListComponent">
+      <template>
+         <ul id="problemset-list">
+          <template iterate="x in problemsets">
+             <problemset-row problemset="{{x}}"></problemset-row>
+          </template>
+        </ul>
+      </template>
+      <script type="application/dart" src="script.dart"></script>
+    </element>
+  </body>
+</html>
