@@ -79,8 +79,9 @@ def deploy():
 
 def test():
   # TODO(Nicholas): Call DumRenderTree to test.
+  if args.target == 'server':
+    _run_command('web/run_tests.py /usr/local/google_appengine web/test')
   sys.exit(0)
-
   
 def _run_command(cmd):
   print(cmd)
