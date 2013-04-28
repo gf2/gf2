@@ -30,7 +30,7 @@ class UrlBuilder {
       if (res.length > 0) {
         res += "&";
       }
-      res += key + "=" + value;
+      res += key + "=" + value.toString();
     });
     return res;
   }
