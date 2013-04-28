@@ -78,6 +78,7 @@ def deploy():
     _run_command('appcfg.py update web --email=%s' % gf2config['email'])
 
 def test():
+  # TODO(Nicholas): Call DumRenderTree to test.
   sys.exit(0)
 
   
