@@ -15,6 +15,7 @@ import os.path
 import argparse
 import subprocess
 import shutil
+import sys
 import os
 import re
 
@@ -75,6 +76,11 @@ def deploy():
     _run_command('dev_appserver.py web/ --port 8080 --enable_sendmail')
   else:
     _run_command('appcfg.py update web --email=%s' % gf2config['email'])
+
+def test():
+  # TODO(Nicholas): Call DumRenderTree to test.
+  sys.exit(0)
+
   
 def _run_command(cmd):
   print(cmd)
@@ -104,20 +110,27 @@ def _load_gf2config():
 
 actions_map = {'clean': clean,
                'build': build,
-               'deploy': deploy}
+               'deploy': deploy,
+               'test': test}
 
 
 if __name__ == '__main__':
-  assert _check_tool('pub'), 'hey, pub not found, add dart SDK into your $PATH'
-  assert _check_tool('dart2js'), 'hey, dart2js not found, add dart SDK into your $PATH'
-  assert _check_tool('dart'), 'hey, dart not found, add dart SDK into your $PATH'
-  assert _check_tool('appcfg.py'), 'hey, add GAE python SDK into you $PATH'
-  _load_gf2config()
   parser = argparse.ArgumentParser(description='gf2 tools.')
-  parser.add_argument('action', help = 'clean, build, deploy', choices = ['clean', 'build', 'deploy'])
+  parser.add_argument('action', help = 'clean, build, deploy, test', choices = ['clean', 'build', 'deploy', 'test'])
   parser.add_argument('--instance', help = 'Specify the instance you wanna deply to. Instance name is defined in .gf2', choices = ['dev', 'prod', 'local'])
   parser.add_argument('--page', help = 'Specify the page to build')
   parser.add_argument('--nopub', help = 'Skip pub install')
-
+  parser.add_argument('--target', help = 'frontend | server')
+  parser.add_argument('--droneio', help = 'specify this argument to tell that this is running on drone.io')
   args = parser.parse_args()
+  
+  if not args.droneio:
+    # TODO(Nichooas): create a specific config file for drone.io.
+    _load_gf2config()
+  assert _check_tool('pub'), 'hey, pub not found, add dart SDK into your $PATH'
+  assert _check_tool('dart2js'), 'hey, dart2js not found, add dart SDK into your $PATH'
+  assert _check_tool('dart'), 'hey, dart not found, add dart SDK into your $PATH'
+  if not args.droneio:
+    assert _check_tool('appcfg.py'), 'hey, add GAE python SDK into you $PATH'
+
   actions_map[args.action]()
