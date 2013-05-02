@@ -17,6 +17,7 @@ class UserTest(unittest.TestCase):
         (r'/login', LoginHandler),
         (r'/logout', LogoutHandler),
         (r'/signup', SignupHandler),
+        (r'/check_email', CheckEmailHandler),
     ]);
     app_with_sessions = gaesessions.SessionMiddleware(app,
         cookie_key=os.urandom(64))
@@ -76,6 +77,14 @@ class UserTest(unittest.TestCase):
     self.testapp.get('/logout')
     session = get_current_session()
     self.assertTrue('me' not in session)
+    
+    # test check_email 
+    response = self.testapp.get('/check_email?email=roba269@gmail.com')
+    resp = json.loads(response.normal_body)
+    self.assertEqual(resp['available'], False)
+    response = self.testapp.get('/check_email?email=notexist@gmail.com')
+    resp = json.loads(response.normal_body)
+    self.assertEqual(resp['available'], True)
 
 if __name__ == '__main__':
   unittest.main()
