@@ -83,8 +83,6 @@ def test():
     _run_command('python web/run_tests.py /usr/local/google_appengine web/test')
   elif args.target == 'client':
     output = _run_command('DumpRenderTree web/app/web/test/browser_test.html')
-    if output.find('CONSOLE MESSAGE: FAIL:') >= 0:
-      sys.exit(1)
 
   sys.exit(0)
 
