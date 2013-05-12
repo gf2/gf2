@@ -81,11 +81,17 @@ def test():
   # TODO(Nicholas): Call DumRenderTree to test.
   if args.target == 'server':
     _run_command('python web/run_tests.py /usr/local/google_appengine web/test')
+  elif args.target == 'client':
+    output = _run_command('DumpRenderTree web/app/web/test/browser_test.html')
+
   sys.exit(0)
+
   
 def _run_command(cmd):
   print(cmd)
-  print(subprocess.check_output(cmd.split()))
+  output = subprocess.check_output(cmd.split())
+  print(output)
+  return output
 
 def _rm_if_exist(path):
   if os.path.exists(path):
