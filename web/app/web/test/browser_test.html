@@ -34,6 +34,7 @@
     
       // if the test harness sends a done message, tell DRT we're done
       function receiveMessage(event) {
+        console.log(event.data);
         if(event.data == 'unittest-suite-done') {
           testRunner.notifyDone();
         }
