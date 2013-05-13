@@ -1,6 +1,5 @@
 library models;
 
-import 'package:app/gf2lib.dart';
 import 'package:web_ui/observe.dart';
 import 'package:web_ui/observe/html.dart';
 
