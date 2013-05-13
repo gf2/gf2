@@ -91,6 +91,7 @@ def test():
 def _run_command(cmd):
   print(cmd)
   output = subprocess.check_output(cmd.split())
+  print(output)
   return output
 
 def _rm_if_exist(path):
