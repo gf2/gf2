@@ -83,6 +83,7 @@ def test():
     _run_command('python web/run_tests.py /usr/local/google_appengine web/test')
   elif args.target == 'client':
     output = _run_command('DumpRenderTree web/app/web/test/browser_test.html')
+    sys.exit(1)
 
   sys.exit(0)
 
@@ -90,7 +91,6 @@ def test():
 def _run_command(cmd):
   print(cmd)
   output = subprocess.check_output(cmd.split())
-  print(output)
   return output
 
 def _rm_if_exist(path):
