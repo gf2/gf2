@@ -82,8 +82,7 @@ def test():
   if args.target == 'server':
     _run_command('python web/run_tests.py /usr/local/google_appengine web/test')
   elif args.target == 'client':
-    output = _run_command('DumpRenderTree web/app/web/test/browser_test.html')
-    sys.exit(1)
+    output = _run_command('dart web/app/web/test/test_dump_render_tree.dart')
 
   sys.exit(0)
 
