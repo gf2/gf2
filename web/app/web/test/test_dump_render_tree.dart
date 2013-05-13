@@ -12,7 +12,7 @@ main() {
 void testCore(Configuration config) {
   unittestConfiguration = config;
   groupSep = ' - ';
-  final browserTests = ['browser_test.html'];
+  final browserTests = ['web/app/web/test/browser_test.html'];
 
   group('DumpRenderTree', () {
     browserTests.forEach((file) {
