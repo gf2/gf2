@@ -8,7 +8,4 @@ import 'lib/models/readingsection_test.dart';
 void main() {
   useHtmlEnhancedConfiguration();
   test("Construction", () => expect(create(), 1));
-  test("Construction", () => expect(create(), 2));
-  print("unittest-suite-done");
-  query("body").innerHtml = "pass";
 }
