@@ -1,8 +1,4 @@
 { "image" : "/static/img/xxx.jpb",
-  "paragraphs" : [ "First paragraph",
-      "Second paragraph",
-      "Third paragraph"
-    ],
   "questions" : [ { "answer" : 0,
         "options" : [ "option 1",
             "option 2",
@@ -12,6 +8,6 @@
         "points" : 1,
         "type" : "multichoice"
       } ],
-  "title" : "This is reading title",
-  "type" : "reading"
+  "audio" : "audio-id",
+  "type" : "listening"
 }

@@ -8,6 +8,6 @@ main() {
       'web/app.html',
       'web/welcome.html',
       'web/test/problemset_test.html',
-      'web/test/models_test.html',
+      "web/test/browser_test.html",
       ]);
 }

@@ -27,6 +27,6 @@ class GetSectionRequest {
   }
   
   AbstractSection parseResponse(String response) {
-    return new ReadingSection(response);
+    return new AbstractSection.fromJsonString(response);
   }
 }
