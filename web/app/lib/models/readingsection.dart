@@ -1,11 +1,20 @@
 part of models;
 
+
+abstract class ReadingSection extends AbstractSection{
+  String title;
+  String image;
+  List<String> paragraph;
+}
 /**
  * The model represents reading section.
  */
-class ReadingSection extends AbstractSection {
+class ReadingSectionImpl extends JsonObject implements ReadingSection {
   
-  ReadingSection(String jsonContent) {
-    this.jsonContent = jsonContent;
+  ReadingSectionImpl();
+  
+  factory ReadingSectionImpl.fromJsonString(String jsonContent) {
+    print(jsonContent);
+    return new JsonObject.fromJsonString(jsonContent, new ReadingSectionImpl());
   }
 }
