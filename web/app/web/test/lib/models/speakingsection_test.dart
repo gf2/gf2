@@ -5,13 +5,13 @@ import 'package:app/requests.dart';
 import 'package:app/models.dart';
 
 
-int testReadingSection() {
+int testSpeakingSection() {
   GetSectionRequest request = new GetSectionRequest(
-      "1234", url:"/app/fakedata/reading_section.json");
-  request.getSection().then((ReadingSection readingSection) => print(readingSection.title));
+      "1234", url:"/app/fakedata/speaking_section.json");
+  request.getSection().then((SpeakingSection speakingSection) => print(speakingSection.type));
   return 1;
 }
 
 main() {
-  testReadingSection();
+  testSpeakingSection();
 }
