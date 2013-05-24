@@ -1,22 +1,30 @@
 part of models;
 
-abstract class AbstractSection {
+abstract class AbstractSection extends JsonObject {
   
   String type;
+  
+  List<AbstractQuestion> questions;
+
+  AbstractSection();
   
   factory AbstractSection.fromJsonString(String jsonContent) {
     Map parsedJson = parse(jsonContent);
     String type = parsedJson["type"];
     if (type == 'reading') {
-      return new ReadingSectionImpl.fromJsonString(jsonContent);
+      return new ReadingSection.fromJsonString(jsonContent);
     } else if (type == 'listening') {
-      return new ListeningSectionImpl.fromJsonString(jsonContent);
+      return new ListeningSection.fromJsonString(jsonContent);
     } else if (type == 'writing') {
-      return new WritingSectionImpl.fromJsonString(jsonContent);
+      return new WritingSection.fromJsonString(jsonContent);
     } else if (type == 'speaking') {
-      return new SpeakingSectionImpl.fromJsonString(jsonContent);
+      return new SpeakingSection.fromJsonString(jsonContent);
     } else {
-      throw "Not supported section type";
+      throw "Not supported section type:" + type;
     }
+  }
+  
+  static parseCommonData(Map parsedJson, AbstractSection section) {
+    section.type = parsedJson['type'];
   }
 }
