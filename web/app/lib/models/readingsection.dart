@@ -1,20 +1,21 @@
 part of models;
 
-
-abstract class ReadingSection extends AbstractSection{
+class ReadingSection extends AbstractSection {
   String title;
   String image;
   List<String> paragraph;
-}
-/**
- * The model represents reading section.
- */
-class ReadingSectionImpl extends JsonObject implements ReadingSection {
+  List<AbstractQuestion> questions;
   
-  ReadingSectionImpl();
+  ReadingSection();
   
-  factory ReadingSectionImpl.fromJsonString(String jsonContent) {
-    print(jsonContent);
-    return new JsonObject.fromJsonString(jsonContent, new ReadingSectionImpl());
+  factory ReadingSection.fromJsonString(String jsonContent) {
+    ReadingSection readingSection = new ReadingSection();
+    Map parsedJson = parse(jsonContent);
+    readingSection.title = parsedJson['title'];
+    readingSection.image = parsedJson['pargraph'];
+    List<AbstractQuestion> questions =
+        AbstractQuestion.createQuestionsFromList(parsedJson['questions']);
+    readingSection.questions = questions;
+    return readingSection;
   }
 }

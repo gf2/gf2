@@ -1,20 +1,24 @@
 part of models;
 
-
-abstract class WritingSection extends AbstractSection{
+class WritingSection extends AbstractSection {
   String title;
   String image;
   List<String> paragraph;
-}
-/**
- * The model represents reading section.
- */
-class WritingSectionImpl extends JsonObject implements WritingSection {
   
-  WritingSectionImpl();
+  WritingSection();
   
-  factory WritingSectionImpl.fromJsonString(String jsonContent) {
-    print(jsonContent);
-    return new JsonObject.fromJsonString(jsonContent, new WritingSectionImpl());
+  factory WritingSection.fromJsonString(String jsonContent) {
+    WritingSection writingSection = new WritingSection();
+    Map parsedJson = parse(jsonContent);
+    AbstractSection.parseCommonData(parsedJson, writingSection);
+    writingSection.image = parsedJson['image'];
+    List<AbstractQuestion> questions = new List<AbstractQuestion>();
+    List<Map> questionsList = parsedJson['questions'];
+    assert(questionsList.length == 2);
+    questions.add(
+        new WritingShortQuestion.fromMap(questionsList.elementAt(0)));
+    questions.add(
+        new WritingLongQuestion.fromMap(questionsList.elementAt(1)));
+    return writingSection;
   }
 }
