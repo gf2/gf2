@@ -1,4 +1,4 @@
-library readingsection_test;
+library writingsection_test;
 import 'package:unittest/unittest.dart';
 import 'package:app/requests.dart';
 
