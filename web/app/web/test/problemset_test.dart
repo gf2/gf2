@@ -4,7 +4,6 @@ import 'dart:async';
 import 'dart:html';
 import 'package:web_ui/web_ui.dart';
 import 'package:unittest/unittest.dart';
-// TODO(Nicholas Zhao): Try to move all test to on directory.
 // TODO(Nicholas Zhao): Run test in command line.   
 void main() {
   new Timer(new Duration(seconds:2), () => startTest());

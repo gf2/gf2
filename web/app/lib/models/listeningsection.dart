@@ -1,6 +1,5 @@
 part of models;
 
-
 class ListeningSection extends AbstractSection {
   String audio;
   String image;
@@ -16,16 +15,5 @@ class ListeningSection extends AbstractSection {
     listeningSection.image = parsedJson['image'];
     listeningSection.paragraph = parsedJson['paragraph'];
     return listeningSection;
-  }
-}
-/**
- * The model represents reading section.
- */
-class ListeningSectionImpl extends AbstractSection implements ListeningSection {
-  
-  ListeningSectionImpl();
-  
-  factory ListeningSectionImpl.fromJsonString(String jsonContent) {
-    return new JsonObject.fromJsonString(jsonContent, new ListeningSectionImpl());
   }
 }
