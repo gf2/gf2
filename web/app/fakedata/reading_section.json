@@ -10,7 +10,8 @@
           ],
         "paragraph" : 0,
         "points" : 1,
-        "type" : "multichoice"
+        "type" : "multichoice",
+        "description": "This is a question description."
       } ],
   "title" : "This is reading title",
   "type" : "reading"

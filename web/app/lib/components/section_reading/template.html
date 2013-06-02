@@ -1,17 +1,24 @@
 <!DOCTYPE html>
   <body>
     <element name="gf2-reading-section" constructor="ReadingSectionComponent" extends="div">
+      <style>
+        #paragraph-wrapper {
+          display: inline-block;  
+        }
+        #question-wrapper {
+          display: inline-block;
+        }
+      </style>
       <template>
-        <div>
-          This is a reading setction set component.
-          {{ apiurl }}
-        </div>
         <div id="paragraph-wrapper">
         </div>
         <div id="question-wrapper">
+          <gf2-choice-question>
+          </gf2-choice-question>
         </div>
       </template>
       <script type="application/dart" src="script.dart"></script>
+
     </element> 
   </body>
 </html>

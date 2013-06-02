@@ -8,10 +8,11 @@ class ReadingSectionComponent extends WebComponent {
   
   ReadingSection readingSection;
   GetSectionRequest request;
+  int currentQuestionIdx;
 
   String  apiurl;
   String sectionid;
-  
+
   List<ParagraphElement> paragraphs = new List<ParagraphElement>();
   
   void created() {
@@ -39,6 +40,22 @@ class ReadingSectionComponent extends WebComponent {
       paragraphs.add(pElement);
       paragraphWrapper.append(pElement);
     }
-    print("Got reading section.");
+    setCurrentQuestionIdx(0);
   }
+  
+  void setCurrentQuestionIdx(int currentQuestionIdx) {
+    assert(currentQuestionIdx >= 0 &&
+        currentQuestionIdx < this.readingSection.questions.length);
+    this.currentQuestionIdx = currentQuestionIdx;
+    DivElement questionWrapper = query("#question-wrapper");
+    AbstractQuestion question = readingSection.questions[currentQuestionIdx];
+    if (question is MultiChoiceQuestion) {
+      MultiChoiceQuestion multiChoiceQuestion = question;
+      ParagraphElement description = new ParagraphElement();
+      description.text = multiChoiceQuestion.description;
+      questionWrapper.append(description);
+    }
+    
+  }
+
 }
