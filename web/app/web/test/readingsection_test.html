@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <title>readingsection_test</title>
+    <link rel="import" href="packages/app/components/section_reading/template.html">
+  </head>
+ 
+  <body>   
+    <p id="text"></p>
+    <gf2-reading-section 
+        apiUrl="/app/fakedata/reading_section.json"
+        sectionid="1234">
+    </gf2-reading-section>
+    <script type="application/dart" src="readingsection_test.dart"></script>
+    <!-- for this next line to work, your pubspec.yaml file must have a dependency on 'browser' -->
+    <script src="packages/browser/dart.js"></script>
+  </body>
+</html>
