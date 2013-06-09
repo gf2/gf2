@@ -11,7 +11,25 @@
         "paragraph" : 0,
         "points" : 1,
         "type" : "multichoice",
-        "description": "This is a question description."
+        "description": "This is a question description 1."
+      }, { "answer" : 0,
+        "options" : [ "option 1",
+            "option 2",
+            "option 2"
+          ],
+        "paragraph" : 0,
+        "points" : 1,
+        "type" : "multichoice",
+        "description": "This is a question description 2."
+      }, { "answer" : 0,
+        "options" : [ "option 1",
+            "option 2",
+            "option 2"
+          ],
+        "paragraph" : 0,
+        "points" : 1,
+        "type" : "multichoice",
+        "description": "This is a question description 3."
       } ],
   "title" : "This is reading title",
   "type" : "reading"

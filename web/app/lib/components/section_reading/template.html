@@ -7,15 +7,30 @@
         }
         #question-wrapper {
           display: inline-block;
+          margin-left: 50px;
+        }
+        .control-button {
+          display: inline-block;
+          width: 80px;
+          cursor: pointer;
         }
       </style>
       <template>
         <div id="paragraph-wrapper">
         </div>
         <div id="question-wrapper">
-          <gf2-choice-question>
-          </gf2-choice-question>
+          <div id="question-content">
+          </div>
+          <div class="control-button">
+            <span id="previous-question">Previous</span>
+          </div>
+          <div class="control-button">
+            <span id="next-question">Next</span>
+          </div>
         </div>
+        
+        
+        
       </template>
       <script type="application/dart" src="script.dart"></script>
 

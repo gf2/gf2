@@ -15,6 +15,9 @@ class ReadingSectionComponent extends WebComponent {
 
   List<ParagraphElement> paragraphs = new List<ParagraphElement>();
   
+  Element nextQuestionEle;
+  Element previousQuestionEle;
+  
   void created() {
     print("ReadingComponent created.");
   }
@@ -29,6 +32,7 @@ class ReadingSectionComponent extends WebComponent {
       request.getSection().then((AbstractSection readingSection) 
           => initRender(readingSection));
     }
+    initQuestionControl();
   }
   
   initRender(ReadingSection readingSection) {
@@ -43,11 +47,18 @@ class ReadingSectionComponent extends WebComponent {
     setCurrentQuestionIdx(0);
   }
   
-  void setCurrentQuestionIdx(int currentQuestionIdx) {
+  bool setCurrentQuestionIdx(int currentQuestionIdx) {
+    if (currentQuestionIdx < 0) {
+      return false;
+    }
+    if (currentQuestionIdx >= readingSection.questions.length) {
+      return false;
+    }
     assert(currentQuestionIdx >= 0 &&
         currentQuestionIdx < this.readingSection.questions.length);
     this.currentQuestionIdx = currentQuestionIdx;
-    DivElement questionWrapper = query("#question-wrapper");
+    DivElement questionWrapper = query("#question-content");
+    questionWrapper.innerHtml = "";
     AbstractQuestion question = readingSection.questions[currentQuestionIdx];
     if (question is MultiChoiceQuestion) {
       MultiChoiceQuestion multiChoiceQuestion = question;
@@ -56,6 +67,33 @@ class ReadingSectionComponent extends WebComponent {
       questionWrapper.append(description);
     }
     
+    if (currentQuestionIdx == 0) {
+      previousQuestionEle.hidden = true;
+    } else {
+      previousQuestionEle.hidden = false;
+    }
+    
+    if (currentQuestionIdx == readingSection.questions.length - 1) {
+      nextQuestionEle.hidden = true;
+    } else {
+      nextQuestionEle.hidden = false;
+    }
+    return true;
   }
 
+  
+  void initQuestionControl() {
+    nextQuestionEle = query("#next-question");
+    previousQuestionEle = query("#previous-question");
+    nextQuestionEle.onClick.listen((e) => nextQuestion(e));
+    previousQuestionEle.onClick.listen((e) => previousQuestion(e));
+  }
+  
+  void nextQuestion(MouseEvent event) {
+    setCurrentQuestionIdx(currentQuestionIdx + 1);
+  }
+  
+  void previousQuestion(MouseEvent event) {
+    setCurrentQuestionIdx(currentQuestionIdx - 1);
+  }
 }
