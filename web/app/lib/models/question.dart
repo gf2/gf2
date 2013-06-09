@@ -26,6 +26,7 @@ abstract class AbstractQuestion {
 }
 
 class MultiChoiceQuestion extends AbstractQuestion {
+  String description;
   int answer;
   List<String> options;
   int paragraph;
@@ -34,6 +35,7 @@ class MultiChoiceQuestion extends AbstractQuestion {
   
   factory MultiChoiceQuestion.fromMap(Map map) {
     MultiChoiceQuestion multiChoice = new MultiChoiceQuestion();
+    multiChoice.description = map['description'];
     multiChoice.answer = map['answer'];
     multiChoice.options = map['options'];
     multiChoice.paragraph = map['paragraph'];
